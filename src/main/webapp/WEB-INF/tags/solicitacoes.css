@@ -1,0 +1,7 @@
+table.Solicitacoes > * > tr > *:nth-child(1) { text-align: center; width: 50px }
+table.Solicitacoes > * > tr > *:nth-child(3) { text-align: center; width: 120px }
+table.Solicitacoes > * > tr > *:nth-child(4) { text-align: center; width: 120px }
+table.Solicitacoes > * > tr > *:nth-child(5) { text-align: center; width: 120px }
+table.Solicitacoes > * > tr > *:nth-child(6) { text-align: center; width: 200px }
+table.Solicitacoes > * > tr > *:nth-child(7) { text-align: center; width: 200px }
+table.Solicitacoes > * > tr > *:nth-child(8) { text-align: center; width: 50px }

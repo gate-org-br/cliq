@@ -1,0 +1,17 @@
+Table.Pendencias > * > tr > *:nth-child(1) { display: none; text-align: center; width: 64px }
+Table.Pendencias > * > tr > *:nth-child(2) { display: none; text-align: center; width: 128px }
+Table.Pendencias > * > tr > *:nth-child(3) { display: none; text-align: center; width: 128px }
+Table.Pendencias > * > tr > *:nth-child(4) { display: none; text-align: center; width: 128px }
+Table.Pendencias > * > tr > *:nth-child(5) { display: none; text-align: center; width: 128px }
+Table.Pendencias > * > tr > *:nth-child(6) { display: none; text-align: center; width: 128px }
+Table.Pendencias > * > tr > *:nth-child(8) { display: none; text-align: center; width: 128px; color: #660000 }
+Table.Pendencias > * > tr > *:nth-child(9) { display: none; text-align: center; width: 64px; color: #660000  }
+
+@media only screen and (min-width: 370px) { Table.Pendencias > * > tr > *:nth-child(9) { display: table-cell } }
+@media only screen and (min-width: 420px) { Table.Pendencias > * > tr > *:nth-child(1) { display: table-cell } }
+@media only screen and (min-width: 540px) { Table.Pendencias > * > tr > *:nth-child(8) { display: table-cell } }
+@media only screen and (min-width: 620px) { Table.Pendencias > * > tr > *:nth-child(2) { display: table-cell } }
+@media only screen and (min-width: 740px) { Table.Pendencias > * > tr > *:nth-child(3) { display: table-cell } }
+@media only screen and (min-width: 860px) { Table.Pendencias > * > tr > *:nth-child(4) { display: table-cell } }
+@media only screen and (min-width: 980px) { Table.Pendencias > * > tr > *:nth-child(5) { display: table-cell } }
+@media only screen and (min-width: 1100px) { Table.Pendencias > * > tr > *:nth-child(6) { display: table-cell } }

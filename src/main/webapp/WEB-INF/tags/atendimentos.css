@@ -1,0 +1,17 @@
+table.Atendimentos > * > tr > *:nth-child(1) { text-align: center; width: 50px }
+table.Atendimentos > * > tr > *:nth-child(3) { text-align: center; width: 120px }
+table.Atendimentos > * > tr > *:nth-child(4) { text-align: center; width: 120px }
+table.Atendimentos > * > tr > *:nth-child(5) { text-align: center; width: 120px }
+table.Atendimentos > * > tr > *:nth-child(6) { text-align: center; width: 160px }
+table.Atendimentos > * > tr > *:nth-child(7) { text-align: center; width: 160px }
+table.Atendimentos > * > tr > *:nth-child(8) { text-align: center; width: 160px }
+table.Atendimentos > * > tr > *:nth-child(9) { text-align: center; width: 50px }
+
+table.Atendimentos  > thead > tr > th:nth-child(2) > input { float: right }
+
+table.Atendimentos > tbody > tr > *:nth-child(2) > label > div { display: none; margin-top: 12px }
+table.Atendimentos[checked='true'] > tbody > tr > td:nth-child(2) { padding: 20px }
+table.Atendimentos[checked='true'] > tbody > tr > td:nth-child(2) > label { font-weight: bold; display: flex; flex-direction: column }
+table.Atendimentos[checked='true'] > tbody > tr > td:nth-child(2) > label > div { display: block; font-weight: initial }
+
+

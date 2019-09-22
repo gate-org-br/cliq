@@ -1,0 +1,5 @@
+span.Editor { flex-basis: 600px }
+
+@media only screen and (min-width: 800px) {
+	span.Editor { flex-basis: 450px }
+}

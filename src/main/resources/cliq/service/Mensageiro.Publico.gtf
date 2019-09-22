@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>
+			CliQ
+		</title>
+		<style>
+			caption { height: 28px; vertical-align: middle; text-align: center; font-weight: bold; line-height: 28px; border-radius: 4px 4px 0px 0px; margin-bottom: 2px; background-color: #666354; color: #EEEEEE; }
+			table.Chamado { width: 100%; background-color: #DDDDDF; margin-top: 20px; }
+			table.Chamado > tbody > tr > th { text-align: left; padding:left: 4px; }
+			table.Chamado > tbody > tr > td { height: 24px; line-height: 24px; padding: 4px; background-color: #CECDC3; border: 4px solid #DDDDDF; border-top: none; }
+			table.Eventos { width: 100%; background-color: #DDDDDF; margin-top: 20px; }
+			table.Eventos > thead > tr > th { text-align: left; height: 28px; vertical-align: middle; background-color: #969384; color: #000000 }
+			table.Eventos > tbody > tr > td { background-color: white; padding: 4px; vertical-align: middle; height: 24px; text-align: left; }
+		</style>
+	</head>
+	<body>
+		<table class="Chamado">
+			<col style="width: 6.25%"/>
+			<col style="width: 6.25%"/>
+			<col style="width: 6.25%"/>
+			<col style="width: 6.25%"/>
+			<col style="width: 6.25%"/>
+			<col style="width: 6.25%"/>
+			<col style="width: 6.25%"/>
+			<col style="width: 6.25%"/>
+			<col style="width: 6.25%"/>
+			<col style="width: 6.25%"/>
+			<col style="width: 6.25%"/>
+			<col style="width: 6.25%"/>
+			<col style="width: 6.25%"/>
+			<col style="width: 6.25%"/>
+			<col style="width: 6.25%"/>
+			<col style="width: 6.25%"/>
+
+			<caption>
+				CHAMADO
+			</caption>
+			<tbody>
+				<tr>
+					<th colspan='2'>
+						N&ordm;:
+					</th>
+					<th colspan='2'>
+						Data:
+					</th>
+					<th colspan='2'>
+						Situação:
+					</th>
+					<th colspan='2'>
+						Pendência:
+					</th>
+					<th colspan='4'>
+						Tipo:
+					</th>
+					<th colspan='4'>
+						Sigiloso:
+					</th>
+				</tr>
+				<tr>
+					<td colspan='2'>
+						${this.id}
+					</td>
+					<td colspan='2'>
+						${data}
+					</td>
+					<td colspan='2'>
+						${situacao}
+					</td>
+					<td colspan='2'>
+						${pendencia}
+					</td>
+					<td colspan='4'>
+						${tipo.nome}
+					</td>
+					<td colspan='4'>
+						${sigiloso}
+					</td>
+				</tr>
+				<tr>
+					<th colspan='4'>
+						Origem:
+					</th>
+					<th colspan='4'>
+						Solicitante:
+					</th>
+					<th colspan='4'>
+						Localização:
+					</th>
+					<th colspan='4'>
+						Atendente:
+					</th>
+				</tr>
+				<tr>
+					<td colspan='4'>
+						${origem.name}
+					</td>
+					<td colspan='4'>
+						${solicitante.name}
+					</td>
+					<td colspan='4'>
+						${localizacao.name}
+					</td>
+					<td colspan='4'>
+						${atendente.name}
+					</td>
+				</tr>
+				<g:if condition='${not empty formulario.fields}'>
+					<g:iterator source='${formulario.fields}' target='field'>
+						<tr>
+							<th colspan='16'>
+								${@field.name}
+							</th>
+						</tr>
+						<tr>
+							<td colspan='16'>
+								${@field.value}
+							</td>
+						</tr>
+					</g:iterator>
+				</g:if>
+				<tr>
+					<td colspan='16' style="padding: 30px; background-color: white">
+						<h4 style='width: 100%; margin: auto; margin-top: 20px; text-align: center;'>
+							${titulo}
+						</h4>
+
+						<p style='width: 100%; margin: auto; margin-top: 20px; text-align: justify; text-indent: 40px;'>
+							${descricao}
+						</p>
+
+						<table class="Eventos">
+							<caption>
+								EVENTOS
+							</caption>
+							<thead>
+								<tr>
+									<th style='width: 200px'>
+										Tipo
+									</th>
+									<th style='width: 200px'>
+										Data
+									</th>
+									<th style='width: 200px'>
+										Usuário
+									</th>
+									<th>
+										Descrição
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<g:iterator source='${eventos}' target='evento'>
+									<g:if condition="${@evento.tipo.publico}">
+										<tr>
+											<td>
+												${@evento.tipo}
+											</td>
+											<td>
+												${@evento.data}
+											</td>
+											<td>
+												${@evento.user.name}
+											</td>
+											<td>
+												<p>
+													${@evento.descricao}
+												</p>
+												<p>
+													${@evento.observacoes}
+												</p>
+											</td>
+										</tr>
+									</g:if>
+								</g:iterator>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

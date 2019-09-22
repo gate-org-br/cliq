@@ -1,0 +1,4 @@
+Table.Checklist { margin: 0 }
+Table.Checklist > * > tr > * > a > i { font-size: 16px }
+Table.Checklist > * > tr > *:nth-child(1) { text-align: center; width: 64px }
+Table.Checklist > * > tr > *:nth-child(3) { text-align: center; width: 64px }
