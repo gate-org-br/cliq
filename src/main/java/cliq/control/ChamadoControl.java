@@ -473,7 +473,7 @@ public abstract class ChamadoControl extends Control
 							.setData(LocalDateTime.now())
 							.setTipo(Evento.Tipo.REABERTURA)
 							.setAnexo(anexoDao.insert(anexo))
-							.setDescricao("Chamado reaberto por %s" + getUser()))));
+							.setDescricao("Chamado reaberto por " + getUser()))));
 
 			link.commit();
 			event.fire(chamado);

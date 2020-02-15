@@ -4,16 +4,16 @@
 <%@ attribute name="eventos" required="true" type="java.util.List"%>
 
 <fieldset>
-	<table class="Eventos" data-collapse="1000px">
+	<table class="c1 c2 c3" data-collapse="1000px">
 		<caption>
 			EVENTOS
 		</caption>
 
 		<thead>
 			<tr>
-				<th>Tipo</th>
-				<th>Data</th>
-				<th>Usuário</th>
+				<th style="width: 50px">Tipo</th>
+				<th style="width: 150px">Data</th>
+				<th style=" width: 250px">Usuário</th>
 				<th>Descrição</th>
 			</tr>
 		</thead>

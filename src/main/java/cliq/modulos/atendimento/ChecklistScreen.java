@@ -18,7 +18,6 @@ public class ChecklistScreen extends AtendimentoScreen
 
 	@Override
 	@Icon("1012")
-	@Color("#000066")
 	@Name("Adicionar tarefa")
 	public String callInsert()
 	{

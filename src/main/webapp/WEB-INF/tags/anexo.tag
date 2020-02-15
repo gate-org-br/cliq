@@ -14,19 +14,19 @@
 			<label data-size="8">
 				<span>
 					<label>
-						Clique para baixar o anexo da categoria
+						Anexo 1
 					</label>
-					<g:shortcut module="cliq.modulos" screen="Anexo" 
-						    arguments="form.id=${chamado.categoria.anexo.id}"/>
+					<g:shortcut  module="cliq.modulos" screen="Anexo"
+						     arguments="form.id=${chamado.anexo.id}"/>
 				</span>
 			</label>
 			<label data-size="8">
 				<span>
 					<label>
-						Clique para baixar o anexo do chamado
+						Anexo 2
 					</label>
-					<g:shortcut  module="cliq.modulos" screen="Anexo" 
-						     arguments="form.id=${chamado.anexo.id}"/>
+					<g:shortcut module="cliq.modulos" screen="Anexo"
+						    arguments="form.id=${chamado.categoria.anexo.id}"/>
 				</span>
 			</label>
 		</fieldset>
@@ -39,9 +39,9 @@
 			<label>
 				<span>
 					<label>
-						Clique para baixar o anexo da categoria
+						Baixar
 					</label>
-					<g:shortcut module="cliq.modulos" screen="Anexo" 
+					<g:shortcut module="cliq.modulos" screen="Anexo"
 						    arguments="form.id=${chamado.categoria.anexo.id}"/>
 				</span>
 			</label>
@@ -55,9 +55,9 @@
 			<label>
 				<span>
 					<label>
-						Clique para baixar o anexo do chamado
+						Baixar
 					</label>
-					<g:shortcut  module="cliq.modulos" screen="Anexo" 
+					<g:shortcut  module="cliq.modulos" screen="Anexo"
 						     arguments="form.id=${chamado.anexo.id}"/>
 				</span>
 			</label>

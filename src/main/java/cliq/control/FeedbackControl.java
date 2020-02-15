@@ -39,7 +39,7 @@ public class FeedbackControl extends Control
 						.setData(chamado.getSolucao())
 						.setUser(feedback.getUser())
 						.setTipo(Evento.Tipo.CONCLUSAO)
-						.setDescricao(String.format("Chamado concluído por %s", feedback.getUser().getName()))));
+						.setDescricao("Chamado concluído por " + feedback.getUser().getName())));
 			};
 
 			link.commit();
