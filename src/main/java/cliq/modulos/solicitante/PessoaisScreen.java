@@ -3,18 +3,18 @@ package cliq.modulos.solicitante;
 import cliq.entity.Chamado;
 import cliq.report.SolicitanteReport;
 import cliq.type.Situacao;
+import gate.annotation.CopyIcon;
 import gate.annotation.Icon;
 import gate.annotation.Name;
+import gate.entity.User;
 import gate.report.Doc;
 
-@Icon("2223")
-@Name("Solicitações")
+@Name("Pessoais")
+@CopyIcon(User.class)
 public class PessoaisScreen extends SolicitanteScreen
 {
 
 	@Override
-	@Name("Pessoais")
-	@Icon("gate.entity.User")
 	public String call()
 	{
 		page = paginate(ordenate(control.search(getFilter())));

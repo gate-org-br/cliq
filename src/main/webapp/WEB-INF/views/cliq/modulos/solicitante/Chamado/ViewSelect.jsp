@@ -144,17 +144,18 @@
 			</g:if>
 		</div>
 
-		<div class='Coolbar'>
-			<a class='Cancel Hide' href='#' tabindex='1'>
-				Fechar<g:icon type='cancel'/>
-			</a>
+		<g-coolbar>
 			<g:link condition="${screen.form.situacao eq 'PENDENTE'}"
 				module="#" screen="#" action="ComentarioSimples" arguments="form.id=${screen.form.id}"/>
 			<g:link condition="${screen.form.situacao eq 'PENDENTE'}"
 				module="#" screen="#" action="Cancelar" arguments="form.id=${screen.form.id}"/>
 			<g:link condition="${screen.form.situacao ne 'PENDENTE'}"
 				module="#" screen="#" action="Reabrir" arguments="form.id=${screen.form.id}"/>
-		</div>
+			<hr/>
+			<a target='_hide' class="Cancel" href='#' tabindex='1'>
+				Fechar<g:icon type='cancel'/>
+			</a>
+		</g-coolbar>
 
 		<cliq:eventos eventos="${screen.form.eventos.stream()
 					 .filter(e -> e.tipo.publico).toList()}"/>

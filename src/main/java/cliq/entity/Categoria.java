@@ -13,6 +13,8 @@ import gate.constraint.Maxlength;
 import gate.constraint.Required;
 import gate.entity.Role;
 import gate.entity.User;
+import gate.error.AppException;
+import gate.language.Language;
 import gate.type.Duration;
 import gate.type.Form;
 import gate.type.Hierarchy;
@@ -28,6 +30,8 @@ import java.util.Objects;
 @Icon("2013")
 public class Categoria implements Serializable, Comparable<Categoria>, Hierarchy<Categoria>
 {
+
+	public static final MimeDataFile ICON = MimeDataFile.of(Categoria.class.getResource("Categoria.png"), "Categoria.png");
 
 	@Required
 	@Description("ID da categoria")
@@ -518,5 +522,165 @@ public class Categoria implements Serializable, Comparable<Categoria>, Hierarchy
 	public void setAnexo(Anexo anexo)
 	{
 		this.anexo = anexo;
+	}
+
+	public static Categoria of(List<String> string) throws AppException
+	{
+		Categoria categoria = new Categoria();
+		if (string.isEmpty() || string.get(0).isBlank())
+			throw new AppException("Tentativa de inserir categoria sem especificar o nome");
+		categoria.setNome(Language.PORTUGUESE.capitalize(string.get(0)));
+
+		categoria.setIcon(Categoria.ICON);
+
+		categoria.setVisibilidade(Visibilidade.PUBLICA);
+		categoria.setPrioridade(Prioridade.MEDIA);
+		categoria.setComplexidade(Complexidade.MEDIA);
+		categoria.setTriagem(Boolean.FALSE);
+		categoria.setTemporaria(Boolean.FALSE);
+		categoria.setSigilosa(Boolean.FALSE);
+		categoria.setProjeto(Boolean.FALSE);
+		categoria.setFeedback(Boolean.FALSE);
+		categoria.setAvaliacao(Boolean.FALSE);
+
+		if (string.size() > 1 && !string.get(1).isBlank())
+			switch (string.get(1).toUpperCase())
+			{
+				case "PUBLICA":
+				case "PÚBLICA":
+					categoria.setVisibilidade(Visibilidade.PUBLICA);
+					break;
+				case "PRIVADA":
+					categoria.setVisibilidade(Visibilidade.PRIVADA);
+					break;
+				default:
+					throw new AppException("Visibilidade inválida: " + string.get(1));
+			}
+
+		if (string.size() > 2 && !string.get(2).isBlank())
+			switch (string.get(2).toUpperCase())
+			{
+				case "BAIXA":
+					categoria.setPrioridade(Prioridade.BAIXA);
+					break;
+				case "MEDIA":
+				case "MÉDIA":
+					categoria.setPrioridade(Prioridade.MEDIA);
+					break;
+				case "ALTA":
+					categoria.setPrioridade(Prioridade.ALTA);
+					break;
+				case "URGENTE":
+					categoria.setPrioridade(Prioridade.URGENTE);
+					break;
+				default:
+					throw new AppException("Prioridade inválida: " + string.get(2));
+			}
+
+		if (string.size() > 3 && !string.get(3).isBlank())
+			switch (string.get(3).toUpperCase())
+			{
+				case "BAIXA":
+					categoria.setComplexidade(Complexidade.BAIXA);
+					break;
+				case "MEDIA":
+				case "MÉDIA":
+					categoria.setComplexidade(Complexidade.MEDIA);
+					break;
+				case "ALTA":
+					categoria.setComplexidade(Complexidade.ALTA);
+					break;
+				case "CRITICA":
+				case "CRÍTICA":
+					categoria.setComplexidade(Complexidade.CRITICA);
+					break;
+				default:
+					throw new AppException("Complexidade inválida: " + string.get(3));
+			}
+
+		if (string.size() > 4 && !string.get(4).isBlank())
+			switch (string.get(4).toUpperCase())
+			{
+				case "SIM":
+					categoria.setTriagem(Boolean.TRUE);
+					break;
+				case "NAO":
+				case "NÃO":
+					categoria.setTriagem(Boolean.FALSE);
+					break;
+				default:
+					throw new AppException(string.get(4) + " não é um valor válido para o campo Triagem");
+			}
+
+		if (string.size() > 5 && !string.get(5).isBlank())
+			switch (string.get(5).toUpperCase())
+			{
+				case "SIM":
+					categoria.setTemporaria(Boolean.TRUE);
+					break;
+				case "NAO":
+				case "NÃO":
+					categoria.setTemporaria(Boolean.FALSE);
+					break;
+				default:
+					throw new AppException(string.get(5) + " não é um valor válido para o campo Temporária");
+			}
+
+		if (string.size() > 6 && !string.get(6).isBlank())
+			switch (string.get(6).toUpperCase())
+			{
+				case "SIM":
+					categoria.setSigilosa(Boolean.TRUE);
+					break;
+				case "NAO":
+				case "NÃO":
+					categoria.setSigilosa(Boolean.FALSE);
+					break;
+				default:
+					throw new AppException(string.get(6) + " não é um valor válido para o campo Sigilosa");
+			}
+		if (string.size() > 7 && !string.get(7).isBlank())
+			switch (string.get(7).toUpperCase())
+			{
+				case "SIM":
+					categoria.setProjeto(Boolean.TRUE);
+					break;
+				case "NAO":
+				case "NÃO":
+					categoria.setProjeto(Boolean.FALSE);
+					break;
+				default:
+					throw new AppException(string.get(7) + " não é um valor válido para o campo Projeto");
+			}
+
+		if (string.size() > 8 && !string.get(8).isBlank())
+			switch (string.get(8).toUpperCase())
+			{
+				case "SIM":
+					categoria.setSigilosa(Boolean.TRUE);
+					break;
+				case "NAO":
+				case "NÃO":
+					categoria.setSigilosa(Boolean.FALSE);
+					break;
+				default:
+					throw new AppException(string.get(8) + " não é um valor válido para o campo Exige Feedback");
+			}
+
+		if (string.size() > 9 && !string.get(9).isBlank())
+			switch (string.get(9).toUpperCase())
+			{
+				case "SIM":
+					categoria.setSigilosa(Boolean.TRUE);
+					break;
+				case "NAO":
+				case "NÃO":
+					categoria.setSigilosa(Boolean.FALSE);
+					break;
+				default:
+					throw new AppException(string.get(9) + " não é um valor válido para o campo Exige Avaliação");
+			}
+
+		return categoria;
 	}
 }

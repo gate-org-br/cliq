@@ -6,6 +6,8 @@ import cliq.dao.CategoriaDao;
 import cliq.dao.EquipeDao;
 import cliq.dao.PessoaDao;
 import cliq.entity.Categoria;
+import cliq.entity.Equipe;
+import gate.annotation.Current;
 import gate.base.Control;
 import gate.constraint.Constraints;
 import gate.entity.Role;
@@ -16,9 +18,14 @@ import gate.sql.Link;
 import gate.type.ID;
 import gate.type.mime.MimeDataFile;
 import java.util.List;
+import javax.inject.Inject;
 
 public class CategoriaControl extends Control
 {
+
+	@Inject
+	@Current
+	private Equipe equipe;
 
 	public List<Categoria> search(Role role) throws AppException
 	{
@@ -103,6 +110,25 @@ public class CategoriaControl extends Control
 			catetoriaDao.insert(categoria);
 			acessoDao.insert(categoria, categoria.getRoles());
 			link.commit();
+		}
+	}
+
+	public void upload(List<Categoria> categorias) throws AppException
+	{
+		Constraints.validate(Categoria.class, categorias, "visibilidade", "nivel", "temporaria", "sigilosa",
+			"nome", "formulario", "descricao", "prioridade", "complexidade", "projeto", "checklist",
+			"avaliacao", "feedback", "duracao", "conclusoes", "atalho", "icon");
+
+		if (categorias.stream().anyMatch(e -> e.getAtribuir().getId() != null
+			&& e.getEncaminhar().getId() != null))
+			throw new AppException("Tentativa de atribuir e encaminhar chamado ao mesmo tempo.");
+
+		try (CategoriaDao dao = new CategoriaDao())
+		{
+			dao.beginTran();
+			for (Categoria categoria : categorias)
+				dao.insert(categoria.setRole(equipe));
+			dao.commit();
 		}
 	}
 

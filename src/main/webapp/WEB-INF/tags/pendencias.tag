@@ -43,7 +43,7 @@
 			<g:iterator source="${pendencias}" target="chamado">
 				<g:choose>
 					<g:when condition="${chamado.pendencia eq 'APROVACAO'}">
-						<tr data-target='_dialog' data-action='Gate?MODULE=cliq.modulos&SCREEN=Aprovacao&form.id=${chamado.id}' title='${g:description(chamado.pendencia)}'>
+						<tr data-target='_dialog' data-action='Gate?MODULE=cliq.modulos&SCREEN=Aprovacao&form.id=${chamado.id}' title='${g:description(chamado.pendencia)}' data-on-hide="reload">
 							<td>
 								<cliq:categoria chamado="${chamado}"/>
 							</td>
@@ -74,7 +74,7 @@
 						</tr>
 					</g:when>
 					<g:when condition="${chamado.pendencia eq 'HOMOLOGACAO'}">
-						<tr data-target='_dialog' data-action='Gate?MODULE=cliq.modulos&SCREEN=Homologacao&form.id=${chamado.id}' title='${g:description(chamado.pendencia)}'>
+						<tr data-target='_dialog' data-action='Gate?MODULE=cliq.modulos&SCREEN=Homologacao&form.id=${chamado.id}' title='${g:description(chamado.pendencia)}' data-on-hide="reload">
 							<td>
 								<cliq:categoria chamado="${chamado}"/>
 							</td>
@@ -105,7 +105,7 @@
 						</tr>
 					</g:when>
 					<g:when condition="${chamado.pendencia eq 'FEEDBACK'}">
-						<tr data-target='_dialog' data-action='Gate?MODULE=cliq.modulos&SCREEN=Feedback&form.id=${chamado.id}' title='${g:description(chamado.pendencia)}'>
+						<tr data-target='_dialog' data-action='Gate?MODULE=cliq.modulos&SCREEN=Feedback&form.id=${chamado.id}' title='${g:description(chamado.pendencia)}' data-on-hide="reload">
 							<td>
 								<cliq:categoria chamado="${chamado}"/>
 							</td>
@@ -136,7 +136,7 @@
 						</tr>
 					</g:when>
 					<g:when condition="${chamado.pendencia eq 'AVALIACAO'}">
-						<tr data-target='_dialog' data-action='Gate?MODULE=cliq.modulos&SCREEN=Avaliacao&form.id=${chamado.id}' title='${g:description(chamado.pendencia)}'>
+						<tr data-target='_dialog' data-action='Gate?MODULE=cliq.modulos&SCREEN=Avaliacao&form.id=${chamado.id}' title='${g:description(chamado.pendencia)}' data-on-hide="reload">
 							<td>
 								<cliq:categoria chamado="${chamado}"/>
 							</td>
@@ -167,7 +167,7 @@
 						</tr>
 					</g:when>
 					<g:when condition="${chamado.pendencia eq 'COMPLEMENTACAO'}">
-						<tr data-target='_dialog' data-action='Gate?MODULE=cliq.modulos&SCREEN=Complementacao&form.id=${chamado.id}' title='${g:description(chamado.pendencia)}'>
+						<tr data-target='_dialog' data-action='Gate?MODULE=cliq.modulos&SCREEN=Complementacao&form.id=${chamado.id}' title='${g:description(chamado.pendencia)}' data-on-hide="reload">
 							<td>
 								<cliq:categoria chamado="${chamado}"/>
 							</td>

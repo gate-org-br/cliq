@@ -24,15 +24,16 @@
 			      </label>
 		      </fieldset>
 
-		      <div class='Coolbar'>
+		      <g-coolbar>
 			      <g:link method="post" module="#" screen="#" action="AceitarAprovacao" arguments="form.id=${screen.form.id}"
 				      data-confirm='Tem certeza de que deseja aceitar a aprovação do chamado?'/>
 			      <g:link method="post" module="#" screen="#" action="RecusarAprovacao" arguments="form.id=${screen.form.id}"
 				      data-confirm='Tem certeza de que deseja recusar a aprovação do chamado?'/>
-			      <a class='Cancel Hide' href="#" tabindex='3'>
+			      <hr/>
+			      <a target="_hide" class="Cancel" href="#" tabindex='3'>
 				      Fechar<g:icon type="cancel"/>
 			      </a>
-		      </div>
+		      </g-coolbar>
 	      </div>
 	</g:if>
 	<g:if condition="${screen.form.pendencia eq 'COMPLEMENTACAO' and screen.form.solicitante.id eq screen.user.id}">
@@ -54,12 +55,13 @@
 				</label>
 			</fieldset>
 
-			<div class='Coolbar'>
+			<g-coolbar>
 				<g:link method="post" module="#" screen="#" action="Complementar" arguments="form.id=${screen.form.id}"/>
-				<a class='Cancel Hide' href="#" tabindex='3'>
+				<hr/>
+				<a target="_hide" class="Cancel" href="#" tabindex='3'>
 					Fechar<g:icon type="cancel"/>
 				</a>
-			</div>
+			</g-coolbar>
 		</div>
 	</g:if>
 	<g:if condition="${screen.form.pendencia eq 'HOMOLOGACAO' 
@@ -83,15 +85,16 @@
 			      </label>
 		      </fieldset>
 
-		      <div class='Coolbar'>
+		      <g-coolbar>
 			      <g:link method="post" module="#" screen="#" action="AceitarHomologacao" arguments="form.id=${screen.form.id}"
 				      data-confirm='Tem certeza de que deseja aceitar a homologação do chamado?'/>
 			      <g:link method="post" module="#" screen="#" action="RecusarHomologacao" arguments="form.id=${screen.form.id}"
 				      data-confirm='Tem certeza de que deseja recusar a homologação do chamado?'/>
-			      <a class='Cancel Hide' href="#" tabindex='3'>
+			      <hr/>
+			      <a target="_hide" class="Cancel" href="#" tabindex='3'>
 				      Fechar<g:icon type="cancel"/>
 			      </a>
-		      </div>
+		      </g-coolbar>
 	      </div>
 	</g:if>
 	<g:if condition="${screen.form.pendencia eq 'FEEDBACK' and screen.form.solicitante.id eq screen.user.id}">
@@ -113,15 +116,16 @@
 				</label>
 			</fieldset>
 
-			<div class='Coolbar'>
+			<g-coolbar>
 				<g:link method="post" module="#" screen="#" action="AceitarFeedback" arguments="form.id=${screen.form.id}"
 					data-confirm='Tem certeza de que deseja aceitar a solução do chamado?'/>
 				<g:link method="post" module="#" screen="#" action="RecusarFeedback" arguments="form.id=${screen.form.id}"
 					data-confirm='Tem certeza de que deseja recusar a solução do chamado?'/>
-				<a class='Cancel Hide' href="#" tabindex='3'>
+				<hr/>
+				<a target="_hide" class="Cancel" href="#" tabindex='3'>
 					Fechar<g:icon type="cancel"/>
 				</a>
-			</div>
+			</g-coolbar>
 		</div>
 	</g:if>
 	<g:if condition="${screen.form.pendencia eq 'AVALIACAO' and screen.form.solicitante.id eq screen.user.id}">
@@ -143,8 +147,8 @@
 				</label>
 			</fieldset>
 
-			<div class='Coolbar'>
-				<g:values source="cliq.entity.Chamado$Nota" target="nota" reverse="true">
+			<g-coolbar>
+				<g:values source="cliq.type.Nota" target="nota" reverse="true">
 					<g:link method="post" module="#" screen="#" action="Avaliar"
 						arguments="form.id=${screen.form.id}&form.nota=${nota.ordinal()}"
 						class='R' style='color: ${nota.color}'
@@ -152,10 +156,11 @@
 						<g:print value="${nota}"/><g:icon type="${nota}"/>
 					</g:link>
 				</g:values>
-				<a class='Cancel Hide' href="#" tabindex='3'>
+				<hr/>
+				<a target="_hide" class="Cancel" href="#" tabindex='3'>
 					Fechar<g:icon type="cancel"/>
 				</a>
-			</div>
+			</g-coolbar>
 		</div>
 	</g:if>
 </form>

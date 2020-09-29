@@ -13,14 +13,14 @@
 				</span>
 			</label>
 		</fieldset>
-		<div class='Coolbar'>
+		<g-coolbar>
 			<g:link method="post" module='#' screen='#' >
 				Pesquisar<g:icon type="search"/>
 			</g:link>
 			<g:link module='#' screen='#' action='Insert'>
 				Inserir<g:icon type="insert"/>
 			</g:link>
-		</div>
+		</g-coolbar>
 
 		<g:choose>
 			<g:when condition="${screen.GET}">
@@ -123,11 +123,11 @@
 					</tbody>
 				</table>
 
-				<div class='Coolbar'>
+				<g-coolbar>
 					<g:link module='#' screen='#' action='Insert'>
 						Inserir<g:icon type="insert"/>
 					</g:link>
-				</div>
+				</g-coolbar>
 			</g:otherwise>
 		</g:choose>
 	</form>

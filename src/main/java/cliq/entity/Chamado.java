@@ -10,6 +10,7 @@ import cliq.type.Prioridade;
 import cliq.type.Situacao;
 import cliq.type.Status;
 import gate.annotation.Converter;
+import gate.annotation.CopyIcon;
 import gate.annotation.Description;
 import gate.annotation.Entity;
 import gate.annotation.Icon;
@@ -904,7 +905,7 @@ public class Chamado implements Serializable, Comparable<Chamado>
 	{
 
 		@Name("Categoria")
-		@Icon("cliq.entity.Categoria")
+		@CopyIcon(Categoria.class)
 		CATEGORIA(String.class, "Categoria.nome", "Categoria.nome"),
 		@Icon("2227")
 		@Name("Origem")
@@ -919,22 +920,22 @@ public class Chamado implements Serializable, Comparable<Chamado>
 		@Name("Atendente")
 		ATENDENTE(String.class, "Atendente.name", "Atendente.name"),
 		@Name("Situação")
-		@Icon("cliq.type.Situacao")
+		@CopyIcon(Situacao.class)
 		SITUACAO(Situacao.class, "Chamado.situacao", "Chamado.situacao"),
 		@Name("Pendencia")
-		@Icon("cliq.type.Pendencia")
+		@CopyIcon(Pendencia.class)
 		PENDENCIA(Pendencia.class, "Chamado.pendencia", "Chamado.pendencia"),
 		@Name("Prioridade")
 		@Icon("cliq.type.Prioridade")
 		PRIORIDADE(Prioridade.class, "Chamado.prioridade", "Chamado.prioridade"),
 		@Name("Complexidade")
-		@Icon("cliq.type.Complexidade")
+		@CopyIcon(Complexidade.class)
 		COMPLEXIDADE(Complexidade.class, "Chamado.complexidade", "Chamado.complexidade"),
 		@Icon("2043")
 		@Name("Projeto")
 		PROJETO(Boolean.class, "Chamado.projeto", "Chamado.projeto"),
 		@Name("Nota")
-		@Icon("cliq.type.Nota")
+		@CopyIcon(Nota.class)
 		NOTA(Nota.class, "Chamado.nota", "Chamado.nota"),
 		@Name("Ano")
 		@Icon("date")

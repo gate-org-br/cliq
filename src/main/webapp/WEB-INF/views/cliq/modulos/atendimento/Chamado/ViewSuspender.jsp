@@ -29,13 +29,14 @@
 				</span>
 			</label>
 		</fieldset>
-		<div class='Coolbar'>
+		<g-coolbar>
 			<g:link class="Commit" method="post" module="#" screen="#" action="#" tabindex='2'>
 				Concluir<g:icon type="commit"/>
 			</g:link>
+			<hr/>
 			<g:link class="Cancel" module="#" screen="#" action="Select" arguments="form.id=${screen.form.id}" tabindex='3'>
 				Desistir<g:icon type="cancel"/>
 			</g:link>
-		</div>
+		</g-coolbar>
 	</form>
 </g:template>

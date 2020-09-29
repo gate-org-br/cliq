@@ -4,8 +4,7 @@
 	<form method='POST' action='#' enctype='multipart/form-data'>
 		<fieldset>
 			<legend>
-				<g:name type="${action}"/>
-				<g:icon type="${action}"/>
+				<g:path/>
 			</legend>
 			<label data-size='8'>
 				Nome:
@@ -19,14 +18,14 @@
 					<g:select property='form.visibilidade' tabindex='1'/>
 					<a target="_popup" href="#">
 						<g:icon type="2000"/>
-						<div title='Exceções'>
+						<template title='Exceções'>
 							<fieldset>
 								<g:selectn property="form.roles[]"
 									   options="${screen.user.role.getRoot()}"
 									   children="${e -> e.children}"
 									   labels="${e -> e.name}"/>
 							</fieldset>
-						</div>
+						</template>
 					</a>
 				</span>
 			</label>
@@ -158,8 +157,8 @@
 				<legend>
 					Checklist:
 				</legend>
-				<label style="width: 100%">
-					<span style='flex-basis: calc(100vh - 640px)'>
+				<label>
+					<span style='flex-basis: calc(100vh - 660px)'>
 						<g:textarea property='form.checklist' tabindex='1'/>
 					</span>
 				</label>
@@ -168,22 +167,23 @@
 				<legend>
 					Conclusões:
 				</legend>
-				<label style="width: 100%">
-					<span style='flex-basis: calc(100vh - 640px)'>
+				<label>
+					<span style='flex-basis: calc(100vh - 660px)'>
 						<g:textarea property='form.conclusoes' tabindex='1'/>
 					</span>
 				</label>
 			</fieldset>
 		</fieldset>
 
-		<div class='Coolbar'>
+		<g-coolbar>
 			<g:link class="Commit" method="post" module="#" screen="#" action="#" tabindex='2'>
 				Concluir<g:icon type='commit'/>
 			</g:link>
+			<hr/>
 			<g:link class="Cancel" module="#" screen="#" arguments="form.role.id=${screen.form.role.id}" tabindex='3'>
 				Desistir<g:icon type='cancel'/>
 			</g:link>
-		</div>
+		</g-coolbar>
 
 		<g:hidden property='form'/>
 		<g:hidden property='form.roles' value=''/>

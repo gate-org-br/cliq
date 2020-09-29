@@ -2,10 +2,11 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="cliq" %>
 
 <g:template filename="/WEB-INF/views/cliq/modulos/atendimento/Main.jsp">
-	<div class='Coolbar'>
+	<g-coolbar>
 		<g:link target="_report" module='#' screen='#' action='Report'/>
-		<g:link target='_dialog' module='#' screen='#' action='Insert' style='float: left'/>
-	</div>
+		<hr/>
+		<g:link target='_dialog' module='#' screen='#' action='Insert' data-on-hide="reload"/>
+	</g-coolbar>
 
 	<div id="PageControl" class='PageControl'>
 		<ul>
@@ -98,10 +99,4 @@
 			</g:iterator>
 		</ul>
 	</div>
-
-	<script>
-		window.addEventListener("load",
-			() => Array.from(document.querySelectorAll("a[target='_dialog'], tr[data-target='_dialog']"))
-				.forEach(element => element.addEventListener("hide", () => window.top.location = window.top.location.href)));
-	</script>
 </g:template>

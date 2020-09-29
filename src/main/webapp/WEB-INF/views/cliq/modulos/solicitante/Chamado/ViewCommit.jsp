@@ -11,13 +11,14 @@
 
 		<cliq:formulario categoria="${screen.form.categoria}" form="form"/>
 
-		<div class='Coolbar'>
-			<g:link method="post" module="#" screen="#" action="Commit" tabindex='2' style='color: #006600'>
+		<g-coolbar>
+			<g:link method="post" module="#" screen="#" action="Commit" tabindex='2' class="Commit">
 				Concluir<g:icon type='commit'/>
 			</g:link>
-			<a class='Hide' style='float: left; color: #660000' tabindex='3'>
+			<hr/>
+			<a target="_hide" class='Cancel' tabindex='3'>
 				Desistir<g:icon type='cancel'/>
 			</a>
-		</div>
+		</g-coolbar>
 	</form>
 </g:template>

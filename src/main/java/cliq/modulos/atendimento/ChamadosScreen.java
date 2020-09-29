@@ -1,29 +1,18 @@
 package cliq.modulos.atendimento;
 
-import cliq.control.AtendimentoControl;
 import cliq.entity.Chamado;
-import cliq.entity.Equipe;
 import cliq.report.AtendimentoReport;
 import cliq.type.Situacao;
-import gate.annotation.Current;
 import gate.annotation.Icon;
 import gate.annotation.Name;
 import gate.report.Doc;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
 
 @Icon("2006")
 @Name("Todos")
 public class ChamadosScreen extends AtendimentoScreen
 {
-
-	@Inject
-	@Current
-	private Equipe equipe;
-
-	@Inject
-	private AtendimentoControl control;
 
 	private List<Chamado> chamados;
 

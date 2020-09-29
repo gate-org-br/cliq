@@ -18,17 +18,17 @@
 					</li>
 				</g:when>
 				<g:when condition="${empty chamado.resposta and chamado.prazoResposta lt dateTime}">
-					<li style="color: #999900">
+					<li style="color: #660000">
 						<g:icon type="2224" style='color: #660000'/>&nbsp;<g:print value="${chamado.prazoResposta}"/>
 					</li>
 				</g:when>
 				<g:when condition="${not empty chamado.resposta and chamado.prazoResposta gt chamado.resposta}">
-					<li style="color: #999900">
+					<li style="color: #006600">
 						<g:icon type="2224" style='color: #006600'/>&nbsp;<g:print value="${chamado.prazoResposta}"/>
 					</li>
 				</g:when>
 				<g:when condition="${not empty chamado.resposta and chamado.prazoResposta lt chamado.resposta}">
-					<li style="color: #660000">
+					<li style="color: #006600">
 						<g:icon type="2224" style='color: #006600'/>&nbsp;<g:print value="${chamado.prazoResposta}"/>
 					</li>
 				</g:when>
@@ -38,22 +38,22 @@
 			<g:choose>
 				<g:when condition="${empty chamado.solucao and chamado.prazoSolucao gt dateTime}">
 					<li style="color: #999900">
-						<g:icon type="2224" style='color: #999900'/>&nbsp;<g:print value="${chamado.prazoSolucao}"/>
+						<g:icon type="commit" style='color: #999900'/>&nbsp;<g:print value="${chamado.prazoSolucao}"/>
 					</li>
 				</g:when>
 				<g:when condition="${empty chamado.solucao and chamado.prazoSolucao lt dateTime}">
-					<li style="color: #999900">
-						<g:icon type="2224" style='color: #660000'/>&nbsp;<g:print value="${chamado.prazoSolucao}"/>
+					<li style="color: #660000">
+						<g:icon type="commit" style='color: #660000'/>&nbsp;<g:print value="${chamado.prazoSolucao}"/>
 					</li>
 				</g:when>
 				<g:when condition="${not empty chamado.solucao and chamado.prazoSolucao gt chamado.solucao}">
-					<li style="color: #999900">
-						<g:icon type="2224" style='color: #006600'/>&nbsp;<g:print value="${chamado.prazoSolucao}"/>
+					<li style="color: #006600">
+						<g:icon type="commit" style='color: #006600'/>&nbsp;<g:print value="${chamado.prazoSolucao}"/>
 					</li>
 				</g:when>
 				<g:when condition="${not empty chamado.solucao and chamado.prazoSolucao lt chamado.solucao}">
 					<li style="color: #660000">
-						<g:icon type="2224" style='color: #006600'/>&nbsp;<g:print value="${chamado.prazoSolucao}"/>
+						<g:icon type="commit" style='color: #006600'/>&nbsp;<g:print value="${chamado.prazoSolucao}"/>
 					</li>
 				</g:when>
 			</g:choose>

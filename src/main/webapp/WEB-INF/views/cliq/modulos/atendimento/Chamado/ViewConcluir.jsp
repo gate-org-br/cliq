@@ -20,9 +20,8 @@
 					</g:if>
 					<label>
 						Comentário:
-						<span
-							style="flex-basis: calc(100vh - 260px)">
-							<g:textarea id="textarea" property="form.evento.observacoes" tabindex="1"/>
+						<span class="Editor">
+							<g:textarea tabindex='1' id="textarea" property="form.evento.observacoes"/>
 						</span>
 					</label>
 					<label>

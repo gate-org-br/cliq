@@ -87,6 +87,7 @@ public class ChamadoDao extends Dao
 	{
 		if (getLink().prepare(Update.table("Chamado")
 			.set("pendencia", chamado.getPendencia())
+			.set("feedback", chamado.getFeedback())
 			.set("Chamado$id", chamado.getChamado().getId())
 			.set("nivel", chamado.getNivel())
 			.set("situacao", chamado.getSituacao())

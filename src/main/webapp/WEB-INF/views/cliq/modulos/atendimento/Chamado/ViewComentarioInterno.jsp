@@ -17,11 +17,6 @@
 		<div>
 			<form method='POST' action='#' enctype='multipart/form-data'>
 				<fieldset>
-					<legend>
-						<g:icon type="${action}"/>
-						<g:name type="${action}"/>
-						<g:hidden property="form.id"/>
-					</legend>
 					<label>
 						Comentário:
 						<span class="Editor">
@@ -35,14 +30,16 @@
 						</span>
 					</label>
 				</fieldset>
-				<div class='Coolbar'>
-					<g:link class="Commit" method="post" module="#" screen="#" action="#" tabindex='3'>
+				<g-coolbar>
+					<g:link method="post" module="#" screen="#" action="#" tabindex='3' class="Commit">
 						Concluir<g:icon type="commit"/>
 					</g:link>
-					<g:link class="Cancel" module="#" screen="#" action="Select" arguments="form.id=${screen.form.id}" tabindex='3'>
+					<hr/>
+					<g:link module="#" screen="#" action="Select" arguments="form.id=${screen.form.id}" tabindex='3' class="Cancel">
 						Desistir<g:icon type="cancel"/>
 					</g:link>
-				</div>
+				</g-coolbar>
+				<g:hidden property="form.id"/>
 			</form>
 		</div>
 	</div>

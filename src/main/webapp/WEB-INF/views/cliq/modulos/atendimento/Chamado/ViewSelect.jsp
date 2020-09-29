@@ -2,21 +2,22 @@
 <%@ taglib uri="http://www.gate.com.br/gate" prefix="g"%>
 
 <g:template filename="/WEB-INF/views/DIAG.jsp">
-	<g-dialog-config caption="${screen.form.id}">
-		<g:link target='_blank' module="#" screen="#" action="Select"
-			arguments="form.id=${screen.form.id}" title="Destacar chamado">
-			<g:icon type="2188"/>Destacar chamado
-		</g:link>
-		<g:link module="#" screen="#" action="Export" arguments="form.id=${screen.form.id}" target="_report"/>
-		<g:link module="#" screen="#" action="Update" arguments="form.id=${screen.form.id}" condition="${screen.user.id eq screen.form.solicitante.id}" />
-		<g:link module="#" screen="Checklist" action="Insert" arguments="form.id=${screen.form.id}&checkitem.nome=?{Nome}"/>
-	</g-dialog-config>
-
 	<article>
 		<section>
 			<cliq:pendencia/>
 			<form method='POST'>
 				<div class='TEXT'>
+					<div class='MINIBAR'>
+						<hr/>
+						<g:shortcut target='_blank' module="#" screen="#" action="Select"
+							arguments="form.id=${screen.form.id}" title="Destacar chamado">
+							<g:icon type="2188"/>
+						</g:shortcut>
+						<g:shortcut module="#" screen="#" action="Export" arguments="form.id=${screen.form.id}" target="_report"/>
+						<g:shortcut module="#" screen="#" action="Update" arguments="form.id=${screen.form.id}" condition="${screen.user.id eq screen.form.solicitante.id}" />
+						<g:shortcut module="#" screen="Checklist" action="Insert" arguments="form.id=${screen.form.id}&checkitem.nome=?{Nome}"/>
+					</div>
+
 					<g:if condition="${not empty screen.form.alteracao}">
 						<h1>
 							Este chamado foi alterado em <g:print value="${screen.form.alteracao}"/>
@@ -240,7 +241,7 @@
 									Avaliação:
 									<span>
 										<g:if condition="${not empty screen.form.nota}" otherwise="N/A">
-											<g:label property="${form.nota}"/>
+											<g:label property="form.nota"/>
 											<g:icon type="${screen.form.nota}"/>
 										</g:if>
 									</span>

@@ -33,9 +33,9 @@
 			</g:parent>
 		</ul>
 	</fieldset>
-	<div class='Coolbar'>
-		<a class="Cancel Hide" href='#' tabindex='3'>
+	<g-coolbar>
+		<a target="_hide" class="Cancel" href='#' tabindex='3'>
 			Desistir<g:icon type='cancel'/>
 		</a>
-	</div>
+	</g-coolbar>
 </g:template>

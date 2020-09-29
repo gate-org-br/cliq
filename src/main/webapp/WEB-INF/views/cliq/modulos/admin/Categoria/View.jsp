@@ -1,9 +1,10 @@
 <%@ taglib uri="http://www.gate.com.br/gate" prefix="g"%>
 
 <g:template filename="/WEB-INF/views/FULL.jsp">
-	<div class='Coolbar'>
-		<g:link module="cliq.modulos.admin" screen="Categoria" action="Insert"/>
-	</div>
+	<g-coolbar>
+		<g:link module="#" screen="#" action="Insert"/>
+		<g:link module="#" screen="#" action="Upload"/>
+	</g-coolbar>
 
 	<table class="c2 c3 c4 c5 c6 c7 c8 c9">
 		<caption>

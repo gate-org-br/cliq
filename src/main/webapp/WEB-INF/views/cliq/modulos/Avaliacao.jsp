@@ -26,19 +26,19 @@
 							</label>
 						</fieldset>
 
-						<div class='Coolbar'>
-							<g:values source="cliq.entity.Chamado$Nota" target="nota" reverse="true">
+						<g-coolbar>
+							<g:values source="cliq.type.Nota" target="nota" reverse="true">
 								<g:link method="post" module="cliq.modulos" screen="Avaliacao" action="Avaliar"
 									arguments="form.id=${screen.form.id}&form.nota=${nota.ordinal()}" style='color: ${nota.color}' tabindex='2'
 									data-confirm='Tem certeza de que deseja avaliar o serviço prestado como ${g:print(nota)}?'>
 									<g:print value="${nota}"/><g:icon type="${nota}"/>
 								</g:link>
 							</g:values>
-
-							<a class='Cancel Hide' href="#" tabindex='3'>
+							<hr/>
+							<a target="_hide" class='Cancel' href="#" tabindex='3'>
 								Fechar<g:icon type="cancel"/>
 							</a>
-						</div>								
+						</g-coolbar>								
 					</div>
 				</li>
 				<li>

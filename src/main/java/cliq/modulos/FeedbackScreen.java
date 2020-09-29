@@ -2,7 +2,9 @@ package cliq.modulos;
 
 import cliq.control.SolicitanteControl;
 import cliq.entity.Chamado;
+import cliq.entity.Evento;
 import gate.annotation.Color;
+import gate.annotation.CopyIcon;
 import gate.annotation.Icon;
 import gate.annotation.Name;
 import gate.error.AppException;
@@ -33,7 +35,7 @@ public class FeedbackScreen extends CLIQScreen
 
 	@Name("Sim")
 	@Color("#006600")
-	@Icon("cliq.entity.Evento$Tipo:FEEDBACK_ACEITE")
+	@CopyIcon(value = Evento.Tipo.class, field = "FEEDBACK_ACEITE")
 	public String callAceitarFeedback()
 	{
 		try
@@ -50,7 +52,7 @@ public class FeedbackScreen extends CLIQScreen
 
 	@Name("Não")
 	@Color("#660000")
-	@Icon("cliq.entity.Evento$Tipo:FEEDBACK_RECUSA")
+	@CopyIcon(value = Evento.Tipo.class, field = "FEEDBACK_RECUSA")
 	public String callRecusarFeedback()
 	{
 		try

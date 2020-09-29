@@ -24,7 +24,13 @@ Table.Checklist { margin: 0 }
 Table.Checklist > * > tr > * > a > i { font-size: 16px }
 Table.Checklist > * > tr > *:nth-child(1) { text-align: center; width: 64px }
 Table.Checklist > * > tr > *:nth-child(3) { text-align: center; width: 64px }
+span.Editor { flex-basis: 400px }
 
+.ck.ck-editor__editable[role='textbox']
+{
+	padding: 8px;
+	line-height: 12px;
+}
 table.Estatisticas { border-radius: 5px }
 table.Estatisticas > thead > tr > th:first-child { border-top-left-radius: 5px }
 table.Estatisticas > thead > tr > th:last-child { border-top-right-radius: 5px }

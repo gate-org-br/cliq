@@ -4,12 +4,12 @@
 <g:template filename="/WEB-INF/views/FULL.jsp">
 	<g:choose>
 		<g:when condition="${not empty screen.page}">
-			<div class='Coolbar'>
+			<g-coolbar>
 				<g:link module="#" screen="#" action="Delete"
 					data-confirm='Tem certeza de que deseja limpar sua lista de eventos?'>
 					Limpar<g:icon type="delete"/>
 				</g:link>
-			</div>
+			</g-coolbar>
 			<table class="c1 c2 c3 c4 c5 c6" data-collapse="Tablet">
 				<caption>
 					EVENTOS PENDENTES: ${screen.page.size()}

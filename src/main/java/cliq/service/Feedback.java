@@ -26,7 +26,7 @@ public class Feedback
 		try
 		{
 			control.execute();
-		} catch (AppException ex)
+		} catch (AppException | RuntimeException ex)
 		{
 			Logger.getLogger(Feedback.class.getName())
 				.log(Level.SEVERE, ex.getMessage(), ex.getCause());

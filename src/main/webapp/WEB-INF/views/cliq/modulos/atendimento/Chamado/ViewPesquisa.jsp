@@ -135,15 +135,51 @@
 					<g:select property="form.nota" required='' tabindex='1' style="flex-basis: calc(100% - 64px)"/>
 				</span>
 			</label>
-			<label>
-				Pesquisa avançada:
-				<span style='flex-basis: 108px;'>
-					<g:textarea property="form.titulo" required='' tabindex='1'/>
-				</span>
-			</label>
+			<fieldset data-size="8">
+				<label data-size="8">
+					Evento:
+					<span>
+						<g:select property="form.evento.tipo" required=""/>	
+					</span>
+				</label>
+				<label data-size="4">
+					Data Min:
+					<span>
+						<g:icon type="date"/>
+						<g:text property="form.evento.periodo.min"/>	
+					</span>
+				</label>
+				<label data-size="4">
+					Data Max:
+					<span>
+						<g:icon type="date"/>
+						<g:text property="form.evento.periodo.max"/>	
+					</span>
+				</label>
+				<label>
+					Usuário:
+					<span>
+						<g:hidden id="form.evento.user.id" property="form.evento.user.id" required=''/>
+						<g:text id="form.evento.user.name" property="form.evento.user.name" tabindex='1'
+							required='' data-getter="form.evento.user"  style="flex-basis: calc(100% - 92px)"/>
+						<g:shortcut id="form.solicitante" module="cliq.modulos"
+							    screen="Pessoa" action="Search"
+							    arguments="form=@{form.evento.user.name}"
+							    data-get="form.evento.user.id, form.evento.user.name"  style="flex-basis: 32px"/>	
+					</span>
+				</label>
+			</fieldset>
+			<fieldset data-size="8">
+				<label>
+					Pesquisa avançada:
+					<span style="flex-basis: 86px">
+						<g:textarea property="form.titulo" required='' tabindex='1'/>
+					</span>
+				</label>
+			</fieldset>
 		</fieldset>
 
-		<div class='Coolbar'>
+		<g-coolbar>
 			<g:link class="Action" method="post" module="#" screen="#" action="#"
 				arguments="agrupamento=${empty screen.agrupamento ? '' : screen.agrupamento.ordinal()}" tabindex='1'>
 				Pesquisar<g:icon type="search"/>
@@ -153,7 +189,7 @@
 				arguments="agrupamento=${empty screen.agrupamento ? '' : screen.agrupamento.ordinal()}&orderBy=${screen.orderBy}" tabindex='1'/>
 
 			<g:link target='_dialog' module='#' screen='#' action='Insert' tabindex='1'/>
-		</div>
+		</g-coolbar>
 
 		<div class='LinkControl'>
 			<ul>

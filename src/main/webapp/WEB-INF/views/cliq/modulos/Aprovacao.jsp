@@ -26,7 +26,7 @@
 							</label>
 						</fieldset>
 
-						<div class='Coolbar'>
+						<g-coolbar>
 							<g:link method="post" module="cliq.modulos" screen="#" action="AceitarAprovacao"
 								arguments="form.id=${screen.form.id}" tabindex='2'
 								data-confirm='Tem certeza de que deseja aprovar a execução do chamado?'/>
@@ -34,11 +34,11 @@
 							<g:link method="post" module="cliq.modulos" screen="#" action="RecusarAprovacao"
 								arguments="form.id=${screen.form.id}" tabindex='2'
 								data-confirm='Tem certeza de que deseja recusar a execução do chamado?'/>
-
-							<a class='Cancel Hide' href="#" tabindex='3'>
+							<hr/>
+							<a target="_hide" class='Cancel' href="#" tabindex='3'>
 								Fechar<g:icon type="cancel"/>
 							</a>
-						</div>								
+						</g-coolbar>								
 					</div>
 				</li>
 				<li>

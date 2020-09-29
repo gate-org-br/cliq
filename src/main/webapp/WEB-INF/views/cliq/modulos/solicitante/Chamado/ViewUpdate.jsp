@@ -17,8 +17,8 @@
 			<g:form property="form.formulario" tabindex='1'/>
 			<label>
 				Descrição:
-				<span style='flex-basis: 450px'>
-					<g:textarea id='textarea' class="Editor" property="form.descricao" tabindex='1'/>
+				<span class="Editor">
+					<g:textarea id='textarea' property="form.descricao" tabindex='1'/>
 				</span>
 			</label>
 			<label>

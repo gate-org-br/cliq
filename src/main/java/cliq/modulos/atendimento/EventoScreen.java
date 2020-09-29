@@ -2,12 +2,14 @@ package cliq.modulos.atendimento;
 
 import cliq.control.EventoControl;
 import cliq.entity.Evento;
-import gate.annotation.Icon;
+import gate.annotation.CopyIcon;
 import gate.annotation.Name;
 import gate.base.Screen;
 import java.util.List;
 import javax.inject.Inject;
 
+@Name("Eventos")
+@CopyIcon(Evento.class)
 public class EventoScreen extends Screen
 {
 
@@ -18,8 +20,6 @@ public class EventoScreen extends Screen
 	@Inject
 	private EventoControl control;
 
-	@Name("Eventos")
-	@Icon("cliq.entity.Evento")
 	public String call()
 	{
 

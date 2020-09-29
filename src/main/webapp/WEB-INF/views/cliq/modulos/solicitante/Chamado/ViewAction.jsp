@@ -7,8 +7,7 @@
 		<fieldset>
 			<g:hidden property="form.id"/>
 			<legend>
-				<g:icon type="${action}"/>
-				<g:name type="${action}"/>
+				<g:path/>
 			</legend>
 			<label>
 				Comentário:
@@ -18,20 +17,21 @@
 						    tabindex="1"/>
 				</span>
 			</label>
-			<label style='width: 100%;'>
+			<label>
 				Anexo:
 				<span>
 					<g:file property="form.evento.anexo.arquivo" tabindex='1' required=""/>
 				</span>
 			</label>
 		</fieldset>
-		<div class='Coolbar'>
+		<g-coolbar>
 			<g:link class="Commit" method="post" module="#" screen="#" action="#" arguments="form.id=${screen.form.id}" tabindex='3'>
 				Concluir<g:icon type="commit"/>
 			</g:link>
+			<hr/>
 			<g:link class="Cancel" module="#" screen="#" action="Select" arguments="form.id=${screen.form.id}" tabindex='3'>
 				Desistir<g:icon type="cancel"/>
 			</g:link>
-		</div>
+		</g-coolbar>
 	</form>
 </g:template>

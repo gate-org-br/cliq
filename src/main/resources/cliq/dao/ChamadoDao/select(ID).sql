@@ -4,6 +4,7 @@ select
         Chamado.alteracao as alteracao,
 	Chamado.atendimento as atendimento,
 	Chamado.nota as nota,
+        Chamado.feedback as feedback,
 	Chamado.formulario as formulario,
 	Chamado.situacao as situacao,
 	Chamado.sigiloso as sigiloso,

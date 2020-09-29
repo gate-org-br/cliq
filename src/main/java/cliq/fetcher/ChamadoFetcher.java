@@ -34,6 +34,7 @@ public class ChamadoFetcher implements Fetcher<Optional<Chamado>>
 		chamado.setPendencia(cursor.getValue(Pendencia.class, "pendencia"));
 		chamado.setAlteracao(cursor.getValue(LocalDateTime.class, "alteracao"));
 		chamado.setNivel(cursor.getValue(Nivel.class, "nivel"));
+		chamado.setFeedback(cursor.getValue(LocalDateTime.class, "feedback"));
 		chamado.getChamado().setId(cursor.getValue(ID.class, "chamado.id"));
 		chamado.setSituacao(cursor.getValue(Situacao.class, "situacao"));
 		chamado.setSigiloso(cursor.getValue(Boolean.class, "sigiloso"));
