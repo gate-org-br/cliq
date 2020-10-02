@@ -6,7 +6,20 @@
 			<legend>
 				<g:path/>
 			</legend>
-			<label>
+			<label data-size="8">
+				Categoria:
+				<span>
+					<g:hidden id="form.id" property="form.id" required=""/>
+					<g:text id="form.nome" property="form.nome" required=""
+						readonly="readonly"/>
+					<g:shortcut module="#" screen="Categoria" action="Search"
+						    data-get='form.id, form.nome'
+						    tabindex='1' title='Selecionar Caregoria'>
+						<g:icon type="search"/>
+					</g:shortcut>
+				</span>
+			</label>
+			<label data-size="8">
 				Arquivo:
 				<span>
 					<g:file property="form.anexo.arquivo" tabindex='1'/>

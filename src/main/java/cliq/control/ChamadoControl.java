@@ -18,6 +18,7 @@ import cliq.type.Pendencia;
 import cliq.type.Situacao;
 import gate.base.Control;
 import gate.constraint.Constraints;
+import gate.converter.Converter;
 import gate.entity.User;
 import gate.error.AppException;
 import gate.sql.Link;
@@ -180,14 +181,14 @@ public abstract class ChamadoControl extends Control
 									.setChamado(chamado)
 									.setTipo(Evento.Tipo.PRAZO_RESPOSTA)
 									.setData(chamado.getEvento().getData().plusSeconds(1))
-									.setDescricao("Prazo de resposta ajustado automaticamente para " + chamado.getPrazoResposta() + " pela política de SLA " + sla.getNome())))
+									.setDescricao("Prazo de resposta ajustado automaticamente para " + Converter.toText(chamado.getPrazoResposta()) + " pela política de SLA " + sla.getNome())))
 							.setPrazoSolucao(sla.getPrazoSolucao(chamado.getData()))
 							.setEvento(eventoDao
 								.insert(new Evento()
 									.setChamado(chamado)
 									.setTipo(Evento.Tipo.PRAZO_SOLUCAO)
 									.setData(chamado.getEvento().getData().plusSeconds(1))
-									.setDescricao("Prazo de solução ajustado automaticamente para " + chamado.getPrazoSolucao() + " pela política de SLA " + sla.getNome()))));
+									.setDescricao("Prazo de solução ajustado automaticamente para " + Converter.toText(chamado.getPrazoSolucao()) + " pela política de SLA " + sla.getNome()))));
 
 				if (chamado.getCategoria().getAtribuir().getId() != null)
 				{
@@ -549,8 +550,9 @@ public abstract class ChamadoControl extends Control
 								.setDescricao("Chamado retomado automaticamente pelo cliq"))));
 
 			if (chamado.getResposta() == null
-				&& getUser().equals(chamado.getAtendente())
-				&& chamado.getPendencia() == Pendencia.NENHUMA)
+				&& chamado.getSituacao() == Situacao.PENDENTE
+				&& chamado.getPendencia() == Pendencia.NENHUMA
+				&& getUser().getRole().equals(chamado.getLocalizacao()))
 				chamadoDao
 					.update(chamado
 						.setResposta(LocalDateTime.now())

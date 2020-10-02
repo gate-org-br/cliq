@@ -177,12 +177,12 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td class="CChart"
+										<td data-chart="cchart"
 										    title='Quantidades por ${screen.agrupamento}'
 										    data-series='[["${screen.agrupamento}", "Quantidade"], ${g:print(screen.page.stream().map(e -> "[\"".concat(empty e.agrupamento ? "Indefinido" : g:print(e.agrupamento)).concat("\",").concat(e.quantidade).concat("]")).toList())}]'>
 											${screen.page.stream().map(e -> e.quantidade).sum()}
 										</td>
-										<td class="CChart"
+										<td data-chart="cchart"
 										    title='Percentuais por ${screen.agrupamento}'
 										    data-series='[["${screen.agrupamento}", "Percentual"], ${g:print(screen.page.stream().map(e -> "[\"".concat(empty e.agrupamento ? "Indefinido" : g:print(e.agrupamento)).concat("\",").concat(e.percentual.value).concat("]")).toList())}]'>
 											100%

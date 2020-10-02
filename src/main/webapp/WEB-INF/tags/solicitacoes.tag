@@ -75,7 +75,7 @@
 				</tr>
 			</tfoot>
 
-			<tbody>
+			<tbody data-navigate>
 				<g:iterator source="${chamados}" target="chamado">
 					<tr tabindex="1"
 					    title="Chamados"

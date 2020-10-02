@@ -12,13 +12,9 @@
 					</a>
 					<div>
 						<fieldset>
-							<label>
-								Comentário:
-								<span class="Editor">
-									<g:textarea id="textarea"
-										    property="form.evento.observacoes" tabindes='1'/>
-								</span>
-							</label>
+							<fieldset style="height: 400px">
+								<g:text-editor id="textarea" property="form.evento.observacoes" tabindex='1'/>
+							</fieldset>
 							<label>
 								<span>
 									<g:file property="form.evento.anexo.arquivo" tabindex='1' value='' required=""/>

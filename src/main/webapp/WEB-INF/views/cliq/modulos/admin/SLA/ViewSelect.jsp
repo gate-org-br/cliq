@@ -3,9 +3,9 @@
 <g:template filename="/WEB-INF/views/FULL.jsp">
 	<fieldset>
 		<legend>
-			<g:icon type="cliq.entity.SLA"/>Política de SLA
+			<g:path/>
 		</legend>
-		<fieldset style='width: 50%'>
+		<fieldset style='width: 50%; margin: 0'>
 			<legend>
 				SLA<g:icon type="cliq.entity.SLA"/>
 			</legend>
@@ -29,7 +29,7 @@
 				</span>
 			</label>
 		</fieldset>
-		<fieldset style='width: 50%'>
+		<fieldset style='width: 50%; margin: 0'>
 			<legend>
 				<g:icon type="2003"/>Expediente
 			</legend>
@@ -114,13 +114,9 @@
 			<label data-size='8'>
 				Categoria:
 				<span>
-					<g:icon type="cliq.entity.Categoria"/>
-					<g:if condition="${not empty screen.form.categoria.id}" otherwise="N/A">
-						<g:link module="cliq.modulos.admin" screen="Categoria" action="Select" arguments="form.id=${screen.form.categoria.id}"
-							otherwise="${screen.form.categoria.nome}">
-							<g:print value='${screen.form.categoria.nome}' empty="N/A"/>
-						</g:link>
-					</g:if>
+					<g:label property='form.categoria.nome' empty="N/A"/>
+					<g:shortcut condition="${not empty screen.form.categoria.id}"
+						    module="#" screen="Categoria" action="Select" arguments="form.id=${screen.form.categoria.id}"/>
 				</span>
 			</label>
 			<label data-size='8'>
@@ -143,7 +139,7 @@
 
 		<fieldset style='width: 100%'>
 			<legend>
-				Que prazos aplicar?
+				Que prazos este SLA deve aplicar aos chamados?
 			</legend>
 			<label data-size='4'>
 				Tempo de Resposta:
@@ -172,15 +168,13 @@
 		</fieldset>
 	</fieldset>
 
-	<div class='Coolbar'>
-		<a href='Gate?MODULE=cliq.modulos.admin&SCREEN=SLA&ACTION=Update&form.id=${screen.form.id}' tabindex='1'>
-			Alterar<g:icon type='update'/>
-		</a>
-		<a style='color: #660000' href='Gate?MODULE=cliq.modulos.admin&SCREEN=SLA&ACTION=Delete&form.id=${screen.form.id}' tabindex='3' data-confirm='Tem certeza de que deseja remover o registro?'>
-			Remover<i>&#x2026;</i>
-		</a>
-		<a href='Gate?MODULE=cliq.modulos.admin&SCREEN=SLA' tabindex='2' style='float: left'>
-			Retornar<i>&#x2023;</i>
-		</a>
-	</div>
+	<g-coolbar>
+		<g:link module="#" screen="#" action="Update" arguments="form.id=${screen.form.id}" tabindex='1'/>
+		<g:link module="#" screen="#" action="Delete" arguments="form.id=${screen.form.id}" tabindex='1'
+			data-confirm='Tem certeza de que deseja remover o registro?'/>
+		<hr/>
+		<g:link module="#" screen="#" tabindex='1'>
+			Retornar<g:icon type="return"/>
+		</g:link>
+	</g-coolbar>
 </g:template>

@@ -35,12 +35,11 @@
 					<g:label property="form.descricao"/>
 				</span>
 			</label>
-			<label>
-				Observações:
-				<span style='flex-basis: 120px;'>
-					<g:textarea property="form.observacoes" tabindex="1"/>
-				</span>
-			</label>
+
+			<fieldset style="height: 400px">
+				<g:text-editor id="textarea" property="form.observacoes" tabindex='1'/>
+			</fieldset>
+
 			<label>
 				Arquivo:
 				<span>
@@ -49,15 +48,16 @@
 			</label>
 		</fieldset>
 
-		<div class='Coolbar'>
+		<g-coolbar>
 			<g:link class="Commit" method="post" module="#" screen="#" action="#" tabindex='2'>
 				Concluir<g:icon type='commit'/>
 			</g:link>
+			<hr/>
 			<g:link class="Cancel" module="#" screen="#" action="Select"
 				arguments="form.id=${screen.form.id}" tabindex='3'>
 				Desistir<g:icon type='cancel'/>
 			</g:link>
-		</div>
+		</g-coolbar>
 
 		<g:hidden property="form.id"/>
 	</form>

@@ -21,12 +21,11 @@
 				</span>
 			</label>
 
-			<label>
-				Comentário:
-				<span class="Editor">
-					<g:textarea id="textarea" property="form.evento.observacoes" tabindex='2'/>
-				</span>
-			</label>
+			<fieldset style="height: 400px">
+				<g:text-editor id="textarea" id="form.evento.observacoes"
+					       property="form.evento.observacoes" tabindex='1'/>
+			</fieldset>
+
 			<label>
 				Anexo:
 				<span>

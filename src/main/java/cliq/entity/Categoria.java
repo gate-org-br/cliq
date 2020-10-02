@@ -353,9 +353,10 @@ public class Categoria implements Serializable, Comparable<Categoria>, Hierarchy
 		return campos;
 	}
 
-	public void setCampos(StringList campos)
+	public Categoria setCampos(StringList campos)
 	{
 		this.campos = campos;
+		return this;
 	}
 
 	public Boolean getTemporaria()

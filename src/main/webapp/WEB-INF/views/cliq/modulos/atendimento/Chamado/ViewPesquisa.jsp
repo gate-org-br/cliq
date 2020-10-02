@@ -145,15 +145,13 @@
 				<label data-size="4">
 					Data Min:
 					<span>
-						<g:icon type="date"/>
-						<g:text property="form.evento.periodo.min"/>	
+						<g:text property="form.evento.periodo.min" class="Date"/>	
 					</span>
 				</label>
 				<label data-size="4">
 					Data Max:
 					<span>
-						<g:icon type="date"/>
-						<g:text property="form.evento.periodo.max"/>	
+						<g:text property="form.evento.periodo.max" class="Date"/>	
 					</span>
 				</label>
 				<label>
@@ -350,22 +348,22 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td class="CChart"
+										<td data-chart="cchart"
 										    title='Quantidades por ${screen.agrupamento}'
 										    data-series='[["${screen.agrupamento}", "Quantidade"], ${g:print(screen.page.stream().map(e -> "[\"".concat(empty e.agrupamento ? "Indefinido" : e.agrupamento).concat("\",").concat(e.quantidade).concat("]")).toList())}]'>
 											${screen.page.stream().map(e -> e.quantidade).sum()}
 										</td>
-										<td class="CChart"
+										<td data-chart="cchart"
 										    title='Percentuais por ${screen.agrupamento}'
 										    data-series='[["${screen.agrupamento}", "Percentual"], ${g:print(screen.page.stream().map(e -> "[\"".concat(empty e.agrupamento ? "Indefinido" : e.agrupamento).concat("\",").concat(e.percentual.value).concat("]")).toList())}]'>
 											100%
 										</td>
-										<td class="CChart"
+										<td data-chart="cchart"
 										    title='Tempos de Resposta por ${screen.agrupamento}'
 										    data-series='[["${screen.agrupamento}", "Tempos de Resposta"], ${g:print(screen.page.stream().map(e -> "[\"".concat(empty e.agrupamento ? "Indefinido" : e.agrupamento).concat("\",").concat(e.resposta.asM()).concat("]")).toList())}]'>
 											${screen.page.stream().map(e -> e.resposta).reduce((a, b) -> a.add(b)).get().divide(screen.page.size())}
 										</td>
-										<td class="CChart"
+										<td data-chart="cchart"
 										    title='Tempos de Solução por ${screen.agrupamento}'
 										    data-series='[["${screen.agrupamento}", "Tempos de Solução"], ${g:print(screen.page.stream().map(e -> "[\"".concat(empty e.agrupamento ? "Indefinido" : e.agrupamento).concat("\",").concat(e.solucao.asM()).concat("]")).toList())}]'>
 											${screen.page.stream().map(e -> e.solucao).reduce((a, b) -> a.add(b)).get().divide(screen.page.size())}

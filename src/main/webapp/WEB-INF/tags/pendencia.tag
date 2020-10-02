@@ -12,11 +12,11 @@
 				      <g:icon type="${screen.form.pendencia}"/>
 				      <g:description type="${screen.form.pendencia}"/>
 			      </legend>
-			      <label>
-				      <span class="Editor">
-					      <g:textarea id="textarea" property="form.evento.observacoes" tabindex='1'/>
-				      </span>
-			      </label>
+
+			      <fieldset style="height: 400px">
+				      <g:text-editor id="textarea" property="form.evento.observacoes" tabindex='1'/>
+			      </fieldset>
+
 			      <label>
 				      <span>
 					      <g:file property="form.evento.anexo.arquivo" tabindex='1' value='' required=""/>
@@ -43,11 +43,11 @@
 					<g:icon type="${screen.form.pendencia}"/>
 					<g:description type="${screen.form.pendencia}"/>
 				</legend>
-				<label>
-					<span class="Editor">
-						<g:textarea id="textarea" property="form.evento.observacoes" tabindex='1'/>
-					</span>
-				</label>
+
+				<fieldset style="height: 400px">
+					<g:text-editor id="textarea" property="form.evento.observacoes" tabindex='1'/>
+				</fieldset>
+
 				<label>
 					<span>
 						<g:file property="form.evento.anexo.arquivo" tabindex='1' value='' required=""/>
@@ -73,11 +73,9 @@
 				      <g:icon type="${screen.form.pendencia}"/>
 				      <g:description type="${screen.form.pendencia}"/>
 			      </legend>
-			      <label>
-				      <span class="Editor">
-					      <g:textarea id="textarea" property="form.evento.observacoes" tabindex='1'/>
-				      </span>
-			      </label>
+			      <fieldset style="height: 400px">
+				      <g:text-editor id="textarea" property="form.evento.observacoes" tabindex='1'/>
+			      </fieldset>
 			      <label>
 				      <span>
 					      <g:file property="form.evento.anexo.arquivo" tabindex='1' value='' required=""/>
@@ -104,11 +102,9 @@
 					<g:icon type="${screen.form.pendencia}"/>
 					<g:description type="${screen.form.pendencia}"/>
 				</legend>
-				<label>
-					<span class="Editor">
-						<g:textarea id="textarea" property="form.evento.observacoes" tabindex='1'/>
-					</span>
-				</label>
+				<fieldset style="height: 400px">
+					<g:text-editor id="textarea" property="form.evento.observacoes" tabindex='1'/>
+				</fieldset>
 				<label>
 					<span>
 						<g:file property="form.evento.anexo.arquivo" tabindex='1' value='' required=""/>
@@ -135,11 +131,9 @@
 					<g:icon type="${screen.form.pendencia}"/>
 					<g:description type="${screen.form.pendencia}"/>
 				</legend>
-				<label>
-					<span class="Editor">
-						<g:textarea id="textarea" property="form.evento.observacoes" tabindex='1'/>
-					</span>
-				</label>
+				<fieldset style="height: 400px">
+					<g:text-editor id="textarea" property="form.evento.observacoes" tabindex='1'/>
+				</fieldset>
 				<label>
 					<span>
 						<g:file property="form.evento.anexo.arquivo" tabindex='1' value='' required=""/>

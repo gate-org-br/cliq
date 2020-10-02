@@ -34,7 +34,7 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td class='PChart' 
+				<td data-chart='pchart' 
 				    title='Chamados por pendência'
 				    data-series='[["Pendencia", "Chamados"]
 				    ,["Sem pendências", ${estatisticas.semPendencias}]
@@ -79,29 +79,29 @@
 						</span>
 					</div>
 				</td>
-				<td class='CChart'
+				<td data-chart='cchart' 
 				    title='Chamados pendentes por atendente'
-				    data-action='Gate?MODULE=${MODULE}&SCREEN=Estatistica&ACTION=ChamadosPorAtendente'>
+				    data-series='Gate?MODULE=${MODULE}&SCREEN=Estatistica&ACTION=ChamadosPorAtendente'>
 					<g:print value="${estatisticas.atribuidos}"/> / <g:print value="${estatisticas.pendentes}"/>
 				</td>
-				<td class='PChart' 
+				<td data-chart='pchart' 
 				    title='Chamados pendentes em atendimento'
 				    data-series='[["Em Atendimento", "Chamados"]
 				    ,["Sim", ${estatisticas.emAtendimento}]
 				    ,["Não", ${estatisticas.pendentes - estatisticas.emAtendimento}]]'>
 					<g:print value="${estatisticas.emAtendimento}"/> / <g:print value="${estatisticas.pendentes}"/>
 				</td>
-				<td class='CChart' 
+				<td data-chart='cchart' 
 				    title='Chamados pendentes por origem'
-				    data-action='Gate?MODULE=${MODULE}&SCREEN=Estatistica&ACTION=ChamadosPorOrigem'>
+				    data-series='Gate?MODULE=${MODULE}&SCREEN=Estatistica&ACTION=ChamadosPorOrigem'>
 					${estatisticas.origens}
 				</td>
-				<td class='CChart' 
+				<td data-chart='cchart' 
 				    title='Chamados pendentes por categoria'
-				    data-action='Gate?MODULE=${MODULE}&SCREEN=Estatistica&ACTION=ChamadosPorCategoria'>
+				    data-series='Gate?MODULE=${MODULE}&SCREEN=Estatistica&ACTION=ChamadosPorCategoria'>
 					${estatisticas.categorias}
 				</td>
-				<td class='PChart' 
+				<td data-chart='pchart' 
 				    title='Chamados pendentes por prioridade'
 				    data-series='[["Prioridade", "Chamados"]
 				    ,["Baixa", ${estatisticas.prioridadeBaixa}]
@@ -131,7 +131,7 @@
 						</span>
 					</div>
 				</td>
-				<td class='PChart' 
+				<td data-chart='pchart' 
 				    title='Chamados pendentes por complexidade'
 				    data-series='[["Complexidade", "Chamados"]
 				    ,["Baixa", ${estatisticas.complexidadeBaixa}]
@@ -161,8 +161,8 @@
 						</span>
 					</div>
 				</td>
-				<td class='LChart'
-				    data-action='Gate?MODULE=${MODULE}&SCREEN=Estatistica&ACTION=DesempenhoMensal'
+				<td data-chart='lchart' 
+				    data-series='Gate?MODULE=${MODULE}&SCREEN=Estatistica&ACTION=DesempenhoMensal'
 				    title='Desempenho mensal'>
 					<div>
 						<span style='color: #000000' title='Criados'>

@@ -15,12 +15,9 @@
 				</span>
 			</label>
 			<g:form property="form.formulario" tabindex='1'/>
-			<label>
-				Descrição:
-				<span class="Editor">
-					<g:textarea id='textarea' property="form.descricao" tabindex='1'/>
-				</span>
-			</label>
+			<fieldset style="height: 400px">
+				<g:text-editor id="textarea" property="form.descricao" tabindex='1'/>
+			</fieldset>
 			<label>
 				Arquivo:
 				<span>

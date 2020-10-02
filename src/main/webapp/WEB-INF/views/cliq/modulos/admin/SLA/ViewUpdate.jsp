@@ -4,16 +4,16 @@
 	<form method='POST' action='#'>
 		<fieldset>
 			<legend>
-				<g:icon type="update"/>Alterar política de SLA
+				<g:path/>
 			</legend>
-			<fieldset style='width: 49.5%; float: left'>
+			<fieldset style='width: 50%; margin: 0'>
 				<legend>
 					SLA<g:icon type="cliq.entity.SLA"/>
 				</legend>
 				<label>
 					Nome:
 					<span>
-						<g:text property='form.nome' options="${equipe.categorias}" tabindex='1' values="${e -> e.id}"/>
+						<g:text property='form.nome' tabindex='1'/>
 					</span>
 				</label>
 				<label data-size='8'>
@@ -30,7 +30,7 @@
 					</span>
 				</label>
 			</fieldset>
-			<fieldset style='width: 49.5%; float: right'>
+			<fieldset style='width: 50%; margin: 0'>
 				<legend>
 					<g:icon type="2003"/>Expediente
 				</legend>
@@ -84,7 +84,7 @@
 					</span>
 				</label>
 			</fieldset>
-			<fieldset style='width: 100%'>
+			<fieldset>
 				<legend>
 					A quais chamados este SLA se aplica?
 				</legend>
@@ -115,16 +115,20 @@
 				<label data-size='8'>
 					Categoria:
 					<span>
-						<g:select property='form.categoria.id'
-							  options="${equipe.categorias.stream().filter(e -> empty e.categoria.id).toList()}"
-							  children="${e -> e.children}" tabindex='1' values="${e -> e.id}" required=''
-							  title='A qual categoria este SLA se aplica?'/>
+						<g:hidden id="form.categoria.id" property="form.categoria.id" required=""/>
+						<g:text id="form.categoria.nome" property="form.categoria.nome" required=""
+							readonly="readonly"/>
+						<g:shortcut module="#" screen="Categoria" action="Search"
+							    data-get='form.categoria.id, form.categoria.nome'
+							    tabindex='1' title='Selecionar Caregoria'>
+							<g:icon type="search"/>
+						</g:shortcut>
 					</span>
 				</label>
 				<label data-size='8'>
 					Origem:
 					<span>
-						<g:select property='form.origem.id' options="${screen.user.role.root}"
+						<g:select property='form.origem.id' options="${screen.user.role.getRoot()}"
 							  children="${e -> e.children}" tabindex='1' values="${e -> e.id}" required='' title='A qual grupo este SLA se aplica?'>
 							${option.name}
 						</g:select>
@@ -171,14 +175,15 @@
 			</fieldset>
 		</fieldset>
 
-		<div class='Coolbar'>
+		<g-coolbar>
 			<g:link method="post" module="#" screen="#" action="#" tabindex='2' style='color: #006600'>
 				Concluir<g:icon type='commit'/>
 			</g:link>
+			<hr/>
 			<g:link module="#" screen="#" action="Select" arguments="form.id=${screen.form.id}" tabindex='3' style='float: left; color: #660000'>
 				Desistir<g:icon type='cancel'/>
 			</g:link>
-		</div>
+		</g-coolbar>
 
 		<g:hidden property="form.id"/>
 	</form>

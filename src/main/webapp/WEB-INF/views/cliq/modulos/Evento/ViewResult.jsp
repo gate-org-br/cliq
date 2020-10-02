@@ -2,7 +2,6 @@
 
 <g:template filename="/WEB-INF/views/DIAG.jsp">
 	<script>
-		window.addEventListener("load",
-			() => window.frameElement.dialog.hide());
+		window.addEventListener("load", () => GDialog.hide());
 	</script>
 </g:template>

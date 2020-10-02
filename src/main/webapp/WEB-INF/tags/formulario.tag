@@ -139,14 +139,11 @@
 
 	<g:form property="${form}.formulario" tabindex='1'/>
 
-	<label>
-		Descrição:
-		<span class="Editor">
-			<g:textarea id="${form}.descricao"
-				    property="${form}.descricao"
-				    tabindex="1"/>
-		</span>
-	</label>
+	<fieldset style="height: 400px">
+		<g:text-editor id="${form}.descricao"
+			       property="${form}.descricao"
+			       tabindex="1"/>
+	</fieldset>
 
 	<g:choose>
 		<g:when condition="${categoria.campos.contains('@arquivo')}">

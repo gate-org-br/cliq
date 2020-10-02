@@ -47,7 +47,7 @@
 
 		<tbody>
 			<tr data-role data-depth='${d1}'>
-				<td style='text-align: left; padding-left: ${d1*60}px;'>
+				<td style='padding-left: ${d1*60}px;'>
 					<strong>
 						<i style='color: gray; margin: 0 4px 0 8px;'>&#x2006;</i>${equipe.name}
 						<g:if condition="${not empty equipe.roleID}">

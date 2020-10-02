@@ -4,8 +4,7 @@
 	<form method='POST' action='#' enctype='multipart/form-data'>
 		<fieldset>
 			<legend>
-				<g:name type="${action}"/>
-				<g:icon type="${action}"/>
+				<g:path/>
 			</legend>
 			<label data-size='8'>
 				Nome:
@@ -159,7 +158,7 @@
 					Checklist:
 				</legend>
 				<label style="width: 100%">
-					<span style='flex-basis: calc(100vh - 640px)'>
+					<span style='flex-basis: calc(100vh - 660px)'>
 						<g:textarea property='form.checklist' tabindex='1'/>
 					</span>
 				</label>
@@ -169,21 +168,22 @@
 					Conclusões:
 				</legend>
 				<label style="width: 100%">
-					<span style='flex-basis: calc(100vh - 640px)'>
+					<span style='flex-basis: calc(100vh - 660px)'>
 						<g:textarea property='form.conclusoes' tabindex='1'/>
 					</span>
 				</label>
 			</fieldset>
 		</fieldset>
 
-		<div class='Coolbar'>
+		<g-coolbar>
 			<g:link class="Commit" method="post" module="#" screen="#" action="#" tabindex='2'>
 				Concluir<g:icon type='commit'/>
 			</g:link>
+			<hr/>
 			<g:link class="Cancel" module="#" screen="#" action="Select" arguments="form.id=${screen.form.id}" tabindex='3'>
 				Desistir<g:icon type='cancel'/>
 			</g:link>
-		</div>
+		</g-coolbar>
 
 		<g:hidden property='form'/>
 		<g:hidden property='form.roles' value=''/>

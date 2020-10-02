@@ -10,7 +10,7 @@
 					<div class='MINIBAR'>
 						<hr/>
 						<g:shortcut target='_blank' module="#" screen="#" action="Select"
-							arguments="form.id=${screen.form.id}" title="Destacar chamado">
+							    arguments="form.id=${screen.form.id}" title="Destacar chamado">
 							<g:icon type="2188"/>
 						</g:shortcut>
 						<g:shortcut module="#" screen="#" action="Export" arguments="form.id=${screen.form.id}" target="_report"/>
@@ -412,7 +412,9 @@
 
 							<g:link module="#" screen='#' action="Cancelar" arguments="form.id=${screen.form.id}"/>
 
-							<g:link condition="${empty screen.form.resposta and screen.form.atendente.id eq screen.user.id}"
+							<g:link condition="${empty screen.form.resposta 
+									     and screen.form.pendencia == 'NENHUMA'
+									     and screen.form.localizacao.id eq screen.user.role.id}"
 								module="#" screen='#' action="Atender" arguments="form.id=${screen.form.id}"/>
 
 							<g:link module="#" screen='#' action="Atribuir" arguments="form.id=${screen.form.id}"/>
@@ -437,16 +439,10 @@
 					</g:choose>
 				</g:if>
 				<hr/>
-				<a href='#' class="Cancel Hide">
+				<a href='#' target="_hide" class="Cancel">
 					Fechar<g:icon type="cancel"/>
 				</a>
 			</g-coolbar>
 		</footer>
-
-		<script>
-			window.addEventListener("load",
-				() => Array.from(document.querySelectorAll("a[target='_dialog'], tr[data-target='_dialog']"))
-					.forEach(element => element.addEventListener("hide", () => window.location = "Gate?MODULE=${MODULE}&SCREEN=${SCREEN}&ACTION=Select&form.id=${screen.form.id}")));
-		</script>
 	</article>
 </g:template>

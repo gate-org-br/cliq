@@ -1,9 +1,11 @@
 package cliq.modulos.admin;
 
-import cliq.control.SLAControl;
 import cliq.control.PessoaControl;
+import cliq.control.SLAControl;
 import cliq.entity.SLA;
 import cliq.modulos.CLIQScreen;
+import gate.annotation.Color;
+import gate.annotation.CopyIcon;
 import gate.annotation.Icon;
 import gate.annotation.Name;
 import gate.entity.User;
@@ -13,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 
+@CopyIcon(SLA.class)
 @Name("Política de SLA")
-@Icon("cliq.entity.SLA")
 public class SLAScreen extends CLIQScreen
 {
 
@@ -31,6 +33,8 @@ public class SLAScreen extends CLIQScreen
 		return "/WEB-INF/views/cliq/modulos/admin/SLA/View.jsp";
 	}
 
+	@Icon("select")
+	@Name("Detalhe")
 	public String callSelect()
 	{
 		try
@@ -44,6 +48,8 @@ public class SLAScreen extends CLIQScreen
 		}
 	}
 
+	@Name("Nova")
+	@Icon("insert")
 	public String callInsert()
 	{
 		if (isPOST() && getMessages().isEmpty())
@@ -59,6 +65,8 @@ public class SLAScreen extends CLIQScreen
 		return "/WEB-INF/views/cliq/modulos/admin/SLA/ViewInsert.jsp";
 	}
 
+	@Icon("update")
+	@Name("Alterar")
 	public String callUpdate()
 	{
 		if (isGET())
@@ -83,6 +91,9 @@ public class SLAScreen extends CLIQScreen
 		return "/WEB-INF/views/cliq/modulos/admin/SLA/ViewUpdate.jsp";
 	}
 
+	@Icon("delete")
+	@Name("Remover")
+	@Color("#660000")
 	public String callDelete()
 	{
 		try

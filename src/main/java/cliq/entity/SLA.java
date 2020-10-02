@@ -1,7 +1,7 @@
 package cliq.entity;
 
-import cliq.type.Nivel;
 import cliq.type.Complexidade;
+import cliq.type.Nivel;
 import cliq.type.Prioridade;
 import gate.annotation.Description;
 import gate.annotation.Entity;
@@ -9,12 +9,14 @@ import gate.annotation.Icon;
 import gate.annotation.Name;
 import gate.constraint.Maxlength;
 import gate.constraint.Required;
-import gate.type.Duration;
+import gate.error.AppException;
 import gate.type.ID;
 import gate.type.LocalTimeInterval;
 import gate.util.Comparer;
-import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.stream.Stream;
 
 @Entity
 @Icon("2058")
@@ -216,12 +218,12 @@ public class SLA
 		this.origem = origem;
 	}
 
-	public LocalDateTime getPrazoResposta(LocalDateTime data)
+	public LocalDateTime getPrazoResposta(LocalDateTime data) throws AppException
 	{
 		return getData(data, getIni(), getUini());
 	}
 
-	public LocalDateTime getPrazoSolucao(LocalDateTime data)
+	public LocalDateTime getPrazoSolucao(LocalDateTime data) throws AppException
 	{
 		return getData(data, getFim(), getUfim());
 	}
@@ -236,23 +238,71 @@ public class SLA
 		this.prioridade = prioridade;
 	}
 
-	public LocalDateTime getData(LocalDateTime data, Integer value, Unidade unidade)
+	private LocalDateTime getData(LocalDateTime data, Integer value, Unidade unidade)
+		throws AppException
 	{
-		int minutes = unidade.getFator() * value;
-		data = data.withSecond(0).withNano(0);
-
-		for (int i = 0; i < minutes;)
+		if (Boolean.TRUE.equals(getUrgente()))
 		{
-			if ((data.getDayOfWeek().getValue() == 1 && getSun() != null && getSun().contains(data.toLocalTime()))
-				|| (data.getDayOfWeek() == DayOfWeek.MONDAY && getMon() != null && getMon().contains(data.toLocalTime()))
-				|| (data.getDayOfWeek() == DayOfWeek.TUESDAY && getTue() != null && getTue().contains(data.toLocalTime()))
-				|| (data.getDayOfWeek() == DayOfWeek.WEDNESDAY && getWed() != null && getWed().contains(data.toLocalTime()))
-				|| (data.getDayOfWeek() == DayOfWeek.THURSDAY && getThu() != null && getThu().contains(data.toLocalTime()))
-				|| (data.getDayOfWeek() == DayOfWeek.FRIDAY && getFri() != null && getFri().contains(data.toLocalTime()))
-				|| (data.getDayOfWeek() == DayOfWeek.SATURDAY && getSat() != null && getSat().contains(data.toLocalTime())))
-				i++;
+			switch (unidade)
+			{
+				case Dia:
+					return data.plusDays(value);
+				case Hora:
+					return data.plusHours(value);
+				case Minuto:
+					return data.plusMinutes(value);
+				case Semana:
+					return data.plusWeeks(value);
+			}
+		} else
+		{
+			var expediente = Stream.of(getSun(), getMon(), getTue(), getWed(), getThu(), getFri(), getSat())
+				.filter(e -> e != null)
+				.map(e -> e.getDuration())
+				.reduce((a, b) -> a.plus(b))
+				.orElse(Duration.ZERO);
 
-			data = data.plusMinutes(1);
+			if (expediente.get(ChronoUnit.SECONDS) < 8 * 3600)
+				throw new AppException("Tentativa de atribuir SLA não urgente sem especificar pelo menos 8 horas de expediente semanal");
+
+			int minutes = unidade.getFator() * value;
+
+			while (minutes > 0)
+			{
+				switch (data.getDayOfWeek())
+				{
+					case SUNDAY:
+						if (getSun() != null && getSun().contains(data.toLocalTime()))
+							minutes--;
+						break;
+					case MONDAY:
+						if (getMon() != null && getMon().contains(data.toLocalTime()))
+							minutes--;
+						break;
+					case TUESDAY:
+						if (getTue() != null && getTue().contains(data.toLocalTime()))
+							minutes--;
+						break;
+					case WEDNESDAY:
+						if (getWed() != null && getWed().contains(data.toLocalTime()))
+							minutes--;
+						break;
+					case THURSDAY:
+						if (getThu() != null && getThu().contains(data.toLocalTime()))
+							minutes--;
+						break;
+					case FRIDAY:
+						if (getFri() != null && getFri().contains(data.toLocalTime()))
+							minutes--;
+						break;
+					case SATURDAY:
+						if (getSat() != null && getSat().contains(data.toLocalTime()))
+							minutes--;
+						break;
+				}
+
+				data = data.plusMinutes(1);
+			}
 		}
 		return data;
 	}

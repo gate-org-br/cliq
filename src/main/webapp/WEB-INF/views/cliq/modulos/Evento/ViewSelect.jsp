@@ -39,7 +39,7 @@
 		</label>
 		<label>
 			Observações:
-			<span style='flex-basis: 120px;'>
+			<span style='flex-basis: 400px;'>
 				<g:label property='form.observacoes'/>
 			</span>
 		</label>
@@ -57,11 +57,12 @@
 		</g:if>
 	</fieldset>
 
-	<div class='Coolbar'>
+	<g-coolbar>
 		<g:link condition="${screen.form.user.id eq screen.user.id}"
 			module="#" screen="#" action="Update" arguments="form.id=${screen.form.id}"/>
-		<a class='Cancel Hide' href="#">
+		<hr/>
+		<a target="_hide" class='Cancel' href="#">
 			Fechar<g:icon type="cancel"/>
 		</a>
-	</div>
+	</g-coolbar>
 </g:template>

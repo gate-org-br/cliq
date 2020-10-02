@@ -1,7 +1,0 @@
-span.Editor { flex-basis: 400px }
-
-.ck.ck-editor__editable[role='textbox']
-{
-	padding: 8px;
-	line-height: 12px;
-}

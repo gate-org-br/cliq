@@ -143,14 +143,15 @@ public class AtendimentoControl extends ChamadoControl
 
 			chamado = atendimentoDao.select(chamado.getId());
 			if (chamado.getSituacao() != Situacao.PENDENTE)
-				throw new AppException("Atendimentos só podem ser iniciados em projetos pendentes");
+				throw new AppException("Atendimentos só podem ser iniciados em chamados pendentes");
 			if (chamado.getPendencia() != Pendencia.NENHUMA)
 				throw new AppException("O chamado se encontra " + chamado.getPendencia());
 
 			if (chamado.getResposta() != null)
 				throw new AppException("O chamado já se encontra em atendimento");
-			if (chamado.getAtendente().getId() == null || !chamado.getAtendente().getId().equals(getUser().getId()))
-				throw new AppException("Apenas o atendente pode iniciar o atendimento do chamado");
+
+			if (!getUser().getRole().equals(chamado.getLocalizacao()))
+				throw new AppException("Apenas um atendente pode iniciar o atendimento do chamado");
 
 			atendimentoDao
 				.update(chamado

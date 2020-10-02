@@ -8,6 +8,7 @@ import cliq.entity.Equipe;
 import cliq.modulos.CLIQScreen;
 import cliq.producer.EquipeSelecionadaProducer;
 import gate.annotation.Color;
+import gate.annotation.CopyIcon;
 import gate.annotation.Current;
 import gate.annotation.Icon;
 import gate.annotation.Name;
@@ -24,37 +25,37 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 
 @Name("Categorias")
-@Icon("cliq.entity.Categoria")
+@CopyIcon(Categoria.class)
 public class CategoriaScreen extends CLIQScreen
 {
-	
+
 	private Object page;
 	private Categoria form;
 	private Chamado chamado;
-	
+
 	@Required
 	@Name("Pesquisa")
 	@Pattern("^.{3,}$")
 	private String aprovador;
-	
+
 	@Required
 	@Name("Pesquisa")
 	@Pattern("^.{3,}$")
 	private String homologador;
-	
+
 	@Inject
 	@Current
 	private Equipe equipe;
-	
+
 	@Inject
 	private CategoriaControl control;
-	
+
 	@Inject
 	private EquipeControl equipeControl;
-	
+
 	@Inject
 	private EquipeSelecionadaProducer equipeSelecionada;
-	
+
 	@Override
 	public String call()
 	{
@@ -67,13 +68,15 @@ public class CategoriaScreen extends CLIQScreen
 		}
 		return "/WEB-INF/views/cliq/modulos/admin/Categoria/View.jsp";
 	}
-	
+
 	public String callImport()
 	{
 		page = control.search(getForm());
 		return "/WEB-INF/views/cliq/modulos/admin/Categoria/ViewImport.jsp";
 	}
-	
+
+	@Icon("search")
+	@Name("Localizar")
 	public String callSearch()
 	{
 		try
@@ -85,25 +88,25 @@ public class CategoriaScreen extends CLIQScreen
 		}
 		return "/WEB-INF/views/cliq/modulos/admin/Categoria/ViewSearch.jsp";
 	}
-	
-	@Name("Categoria")
-	@Icon("cliq.entity.Categoria")
+
+	@Icon("select")
+	@Name("Detalhe")
 	public String callSelect()
 	{
 		try
 		{
 			form = control.select(getForm().getId());
-			
+
 			if (form.getPessoaAprovadora().getId() != null)
 				aprovador = form.getPessoaAprovadora().getName();
 			else if (form.getEquipeAprovadora().getId() != null)
 				aprovador = form.getEquipeAprovadora().getName();
-			
+
 			if (form.getPessoaHomologadora() != null)
 				homologador = form.getPessoaHomologadora().getName();
 			if (form.getEquipeHomologadora() != null)
 				homologador = form.getEquipeHomologadora().getName();
-			
+
 			return "/WEB-INF/views/cliq/modulos/admin/Categoria/ViewSelect.jsp";
 		} catch (AppException ex)
 		{
@@ -111,7 +114,7 @@ public class CategoriaScreen extends CLIQScreen
 			return call();
 		}
 	}
-	
+
 	@Name("Nova")
 	@Icon("insert")
 	public String callInsert()
@@ -128,11 +131,11 @@ public class CategoriaScreen extends CLIQScreen
 			setMessages(ex.getMessages());
 			return "/WEB-INF/views/cliq/modulos/admin/Categoria/ViewInsert.jsp";
 		}
-		
+
 		getForm().setCampos(new StringList("#titulo", "@descricao", "@arquivo"));
 		return "/WEB-INF/views/cliq/modulos/admin/Categoria/ViewInsert.jsp";
 	}
-	
+
 	@Icon("upload")
 	@Name("Importar")
 	public String callUpload()
@@ -146,7 +149,7 @@ public class CategoriaScreen extends CLIQScreen
 					.filter(e -> !e.isEmpty())
 					.map(Categoria::of)
 					.collect(Collectors.toList());
-				control.upload(categorias);
+				control.upload(getForm(), categorias);
 				return call();
 			} catch (AppException ex)
 			{
@@ -155,7 +158,7 @@ public class CategoriaScreen extends CLIQScreen
 		}
 		return "/WEB-INF/views/cliq/modulos/admin/Categoria/ViewUpload.jsp";
 	}
-	
+
 	@Icon("update")
 	@Name("Alterar")
 	public String callUpdate() throws AppException
@@ -164,17 +167,17 @@ public class CategoriaScreen extends CLIQScreen
 			try
 		{
 			form = control.select(getForm().getId());
-			
+
 			if (form.getPessoaAprovadora().getId() != null)
 				aprovador = form.getPessoaAprovadora().getName();
 			else if (form.getEquipeAprovadora().getId() != null)
 				aprovador = form.getEquipeAprovadora().getName();
-			
+
 			if (form.getPessoaHomologadora() != null)
 				homologador = form.getPessoaHomologadora().getName();
 			if (form.getEquipeHomologadora() != null)
 				homologador = form.getEquipeHomologadora().getName();
-			
+
 		} catch (NotFoundException ex)
 		{
 			setMessages(ex.getMessages());
@@ -189,10 +192,10 @@ public class CategoriaScreen extends CLIQScreen
 		{
 			setMessages(ex.getMessages());
 		}
-		
+
 		return "/WEB-INF/views/cliq/modulos/admin/Categoria/ViewUpdate.jsp";
 	}
-	
+
 	@Icon("delete")
 	@Name("Remover")
 	@Color("#660000")
@@ -210,13 +213,13 @@ public class CategoriaScreen extends CLIQScreen
 			return callSelect();
 		}
 	}
-	
+
 	public String callCampos() throws AppException
 	{
 		control.update(getForm());
 		return "/WEB-INF/views/cliq/modulos/admin/Categoria/ViewSelect.jsp";
 	}
-	
+
 	public String callRelate()
 	{
 		try
@@ -228,48 +231,48 @@ public class CategoriaScreen extends CLIQScreen
 		}
 		return call();
 	}
-	
+
 	public Categoria getForm()
 	{
 		if (form == null)
 			form = new Categoria();
 		return form;
 	}
-	
+
 	public void setForm(Categoria form)
 	{
 		this.form = form;
 	}
-	
+
 	public Object getPage()
 	{
 		if (page == null)
 			page = new ArrayList<>();
 		return page;
 	}
-	
+
 	public Chamado getChamado()
 	{
 		if (chamado == null)
 			chamado = new Chamado();
 		return chamado;
 	}
-	
+
 	public String getAprovador()
 	{
 		return aprovador;
 	}
-	
+
 	public void setAprovador(String aprovador)
 	{
 		this.aprovador = aprovador;
 	}
-	
+
 	public String getHomologador()
 	{
 		return homologador;
 	}
-	
+
 	public void setHomologador(String homologador)
 	{
 		this.homologador = homologador;

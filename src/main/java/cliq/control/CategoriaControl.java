@@ -16,17 +16,18 @@ import gate.error.AppException;
 import gate.error.NotFoundException;
 import gate.sql.Link;
 import gate.type.ID;
+import gate.type.collections.StringList;
 import gate.type.mime.MimeDataFile;
 import java.util.List;
 import javax.inject.Inject;
 
 public class CategoriaControl extends Control
 {
-
+	
 	@Inject
 	@Current
 	private Equipe equipe;
-
+	
 	public List<Categoria> search(Role role) throws AppException
 	{
 		try (CategoriaDao dao = new CategoriaDao())
@@ -34,7 +35,7 @@ public class CategoriaControl extends Control
 			return dao.search(role);
 		}
 	}
-
+	
 	public List<Categoria> search(Categoria categoria)
 	{
 		try (CategoriaDao dao = new CategoriaDao())
@@ -42,7 +43,7 @@ public class CategoriaControl extends Control
 			return dao.search(categoria);
 		}
 	}
-
+	
 	public List<Categoria> search(User usuario) throws AppException
 	{
 		try (CategoriaDao dao = new CategoriaDao())
@@ -50,7 +51,7 @@ public class CategoriaControl extends Control
 			return dao.search(usuario);
 		}
 	}
-
+	
 	public Categoria select(ID id) throws AppException
 	{
 		try (Link link = new Link();
@@ -64,17 +65,17 @@ public class CategoriaControl extends Control
 			return categoria;
 		}
 	}
-
+	
 	public void insert(Categoria categoria) throws AppException
 	{
 		Constraints.validate(categoria, "visibilidade", "nivel", "temporaria", "sigilosa", "role.id",
 			"nome", "formulario", "descricao", "prioridade", "complexidade", "projeto", "checklist",
 			"avaliacao", "feedback", "duracao", "conclusoes", "atalho", "icon");
-
+		
 		if (categoria.getAtribuir().getId() != null
 			&& categoria.getEncaminhar().getId() != null)
 			throw new AppException("Tentativa de atribuir e encaminhar chamado ao mesmo tempo.");
-
+		
 		try (Link link = new Link();
 			AnexoDao anexoDao = new AnexoDao(link);
 			PessoaDao pessoaDao = new PessoaDao(link);
@@ -83,66 +84,81 @@ public class CategoriaControl extends Control
 			CategoriaDao catetoriaDao = new CategoriaDao(link))
 		{
 			link.beginTran();
-
+			
 			if (categoria.getParent().getId() != null)
 				categoria.setRole(catetoriaDao.select(categoria.getParent().getId()).getRole());
-
+			
 			if (categoria.getAtribuir().getId() != null)
 			{
 				categoria.setAtribuir(pessoaDao.select(categoria.getAtribuir().getId()));
 				if (!categoria.getAtribuir().getRole().getId().equals(categoria.getRole().getId()))
 					throw new AppException("Tentativa de atribuir chamado para usuário de outro setor.");
 			}
-
+			
 			if (categoria.getEncaminhar().getId() != null)
 			{
 				if (categoria.getEncaminhar().getId().equals(categoria.getRole().getId()))
 					throw new AppException("Tentativa de encaminhar chamado para o mesmo setor.");
-
+				
 				categoria.setEncaminhar(equipeDao.select(categoria.getEncaminhar().getId()));
 				if (((cliq.entity.Equipe) categoria.getEncaminhar()).getCategorias().isEmpty())
 					throw new AppException("Tentativa de encaminhar chamado para setor sem categorias.");
 			}
-
+			
 			if (categoria.getAnexo().getArquivo() != null)
 				anexoDao.insert(categoria.getAnexo());
-
+			
 			catetoriaDao.insert(categoria);
 			acessoDao.insert(categoria, categoria.getRoles());
 			link.commit();
 		}
 	}
-
-	public void upload(List<Categoria> categorias) throws AppException
+	
+	public void upload(Categoria parent, List<Categoria> categorias) throws AppException
 	{
 		Constraints.validate(Categoria.class, categorias, "visibilidade", "nivel", "temporaria", "sigilosa",
 			"nome", "formulario", "descricao", "prioridade", "complexidade", "projeto", "checklist",
 			"avaliacao", "feedback", "duracao", "conclusoes", "atalho", "icon");
-
+		
 		if (categorias.stream().anyMatch(e -> e.getAtribuir().getId() != null
 			&& e.getEncaminhar().getId() != null))
 			throw new AppException("Tentativa de atribuir e encaminhar chamado ao mesmo tempo.");
-
+		
 		try (CategoriaDao dao = new CategoriaDao())
 		{
 			dao.beginTran();
+			
+			var icon = Categoria.ICON;
+			if (parent != null && parent.getId() != null)
+			{
+				icon = dao.getIcon(parent);
+				parent = dao.select(parent.getId());
+				if (!equipe.equals(parent.getRole()))
+					throw new AppException("Tentativa de importar categorias em outro setor");
+			}
+			
+			var campos = new StringList("#titulo", "#descricao");
 			for (Categoria categoria : categorias)
-				dao.insert(categoria.setRole(equipe));
+				dao.insert(categoria
+					.setParent(parent)
+					.setRole(equipe)
+					.setIcon(icon)
+					.setCampos(campos));
 			dao.commit();
 		}
 	}
-
+	
 	public void update(Categoria categoria) throws AppException
 	{
 		Constraints.validate(categoria, "visibilidade", "nivel", "temporaria", "sigilosa", "role.id", "nome",
 			"formulario", "descricao", "prioridade", "complexidade",
 			"projeto", "checklist", "avaliacao",
 			"feedback", "duracao", "conclusoes", "atalho");
-
+		
 		if (categoria.getAtribuir().getId() != null
 			&& categoria.getEncaminhar().getId() != null)
 			throw new AppException("Tentativa de atribuir e encaminhar o chamado ao mesmo tempo.");
-
+		
 		try (Link link = new Link();
 			AnexoDao anexoDao = new AnexoDao(link);
 			PessoaDao pessoaDao = new PessoaDao(link);
@@ -151,14 +167,14 @@ public class CategoriaControl extends Control
 			CategoriaDao catetoriaDao = new CategoriaDao(link))
 		{
 			link.beginTran();
-
+			
 			if (categoria.getAtribuir().getId() != null)
 			{
 				categoria.setAtribuir(pessoaDao.select(categoria.getAtribuir().getId()));
 				if (!categoria.getAtribuir().getRole().equals(categoria.getRole()))
 					throw new AppException("Tentativa de atribuir chamado para usuário de outro setor.");
 			}
-
+			
 			if (categoria.getEncaminhar().getId() != null)
 			{
 				if (categoria.getEncaminhar().getId().equals(categoria.getRole().getId()))
@@ -167,20 +183,20 @@ public class CategoriaControl extends Control
 				if (((cliq.entity.Equipe) categoria.getEncaminhar()).getCategorias().isEmpty())
 					throw new AppException("Tentativa de encaminhar chamado para setor sem categorias.");
 			}
-
+			
 			if (categoria.getAnexo().getArquivo() != null)
 			{
 				anexoDao.delete(categoria);
 				anexoDao.insert(categoria.getAnexo());
 			}
-
+			
 			catetoriaDao.update(categoria);
 			acessoDao.delete(categoria);
 			acessoDao.insert(categoria, categoria.getRoles());
 			link.commit();
 		}
 	}
-
+	
 	public void delete(Categoria categoria) throws AppException
 	{
 		try (CategoriaDao dao = new CategoriaDao())
@@ -188,7 +204,7 @@ public class CategoriaControl extends Control
 			dao.delete(categoria);
 		}
 	}
-
+	
 	public void relate(Categoria child, Categoria parent) throws AppException
 	{
 		try (CategoriaDao dao = new CategoriaDao())
@@ -210,7 +226,7 @@ public class CategoriaControl extends Control
 			dao.getLink().commit();
 		}
 	}
-
+	
 	public MimeDataFile getIcon(Categoria categoria) throws NotFoundException
 	{
 		try (CategoriaDao dao = new CategoriaDao())

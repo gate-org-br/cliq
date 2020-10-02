@@ -77,9 +77,9 @@
 			</table>
 		</g:otherwise>
 	</g:choose>
-	<div class='Coolbar'>
+	<g-coolbar>
 		<g:link target='_parent' module="#" screen="#" action="Insert" arguments="form.categoria.id=${screen.form.id}">
 			Nova<g:icon type="insert"/>
 		</g:link>
-	</div>
+	</g-coolbar>
 </g:template>

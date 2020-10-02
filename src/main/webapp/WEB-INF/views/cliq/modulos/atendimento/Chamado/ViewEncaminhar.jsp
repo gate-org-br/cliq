@@ -18,12 +18,9 @@
 						    data-autoclick="data-autoclick" title="Selecione a equipe"/>
 				</span>
 			</label>
-			<label>
-				Comentário:
-				<span class="Editor">
-					<g:textarea id="textarea" property="form.evento.observacoes"/>
-				</span>
-			</label>
+			<fieldset style="height: 400px">
+				<g:text-editor id="textarea" property="form.evento.observacoes" tabindex='1'/>
+			</fieldset>
 			<label>
 				Anexo:
 				<span>

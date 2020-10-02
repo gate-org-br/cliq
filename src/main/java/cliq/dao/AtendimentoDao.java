@@ -51,8 +51,10 @@ public class AtendimentoDao extends ChamadoDao
 			.leftJoin("Categoria").on(Condition.of("Chamado.Categoria$id").isEq("Categoria.id"))
 			.leftJoin("gate.Uzer").as("Solicitante").on(Condition.of("Chamado.Solicitante$id").isEq("Solicitante.id"))
 			.leftJoin("gate.Role").as("Origem").on(Condition.of("Chamado.Origem$id").isEq("Origem.id"))
+			.leftJoin("gate.Role").as("Localizacao").on(Condition.of("Chamado.Localizacao$id").isEq("Localizacao.id"))
 			.leftJoin("gate.Uzer").as("Atendente").on(Condition.of("Chamado.Atendente$id").isEq("Atendente.id"))
 			.leftJoin("Contato").on(Condition.of("Chamado.Contato$id").isEq("Contato.id"))
+			.leftJoin("Evento").as("Status").on(Condition.of("Chamado.Evento$id").isEq("Status.id"))
 			.where(AtendimentoCondition.of(getUser(), chamado))
 			.groupBy(agrupamento.getColunas()))
 			.fetchMapList(agrupamento.getTipo(),
@@ -150,8 +152,10 @@ public class AtendimentoDao extends ChamadoDao
 					.where(Condition.of("Evento.Chamado$id").isEq("Chamado.id")
 						.and("Evento.tipo").eq(chamado.getEvento().getTipo())
 						.and("Evento.Uzer$id").eq(chamado.getEvento().getUser().getId())
-						.and("Evento.data").ge(chamado.getEvento().getPeriodo().getMin())
-						.and("Evento.data").le(chamado.getEvento().getPeriodo().getMax())));
+						.and("Evento.data").when(chamado.getEvento().getPeriodo().getMin() != null)
+						.geGet(() -> chamado.getEvento().getPeriodo().getMin().atStartOfDay())
+						.and("Evento.data").when(chamado.getEvento().getPeriodo().getMax() != null)
+						.ltGet(() -> chamado.getEvento().getPeriodo().getMax().plusDays(1).atStartOfDay())));
 
 			return condition;
 		}

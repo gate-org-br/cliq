@@ -4,16 +4,16 @@
 	<form method='POST' action='Gate?MODULE=cliq.modulos.admin&SCREEN=SLA&ACTION=Insert'>
 		<fieldset>
 			<legend>
-				<g:icon type="insert"/>Novo política de SLA
+				<g:path/>
 			</legend>
-			<fieldset style='width: 50%'>
+			<fieldset style='width: 50%; margin: 0'>
 				<legend>
 					SLA<g:icon type="cliq.entity.SLA"/>
 				</legend>
 				<label>
 					Nome:
 					<span>
-						<g:text property='form.nome' options="${equipe.categorias}" tabindex='1' values="${e -> e.id}"/>
+						<g:text property='form.nome' tabindex='1'/>
 					</span>
 				</label>
 				<label data-size='8'>
@@ -30,7 +30,7 @@
 					</span>
 				</label>
 			</fieldset>
-			<fieldset style='width: 50%'>
+			<fieldset style='width: 50%; margin: 0'>
 				<legend>
 					<g:icon type="2003"/>Expediente
 				</legend>
@@ -84,7 +84,7 @@
 					</span>
 				</label>
 			</fieldset>
-			<fieldset style='width: 100%'>
+			<fieldset>
 				<legend>
 					A quais chamados este SLA se aplica?
 				</legend>
@@ -115,10 +115,14 @@
 				<label data-size='8'>
 					Categoria:
 					<span>
-						<g:select property='form.categoria.id'
-							  options="${equipe.categorias.stream().filter(e -> empty e.parent.id).toList()}"
-							  children="${e -> e.children}" tabindex='1' values="${e -> e.id}" required=''
-							  title='A qual categoria este SLA se aplica?'/>
+						<g:hidden id="form.categoria.id" property="form.categoria.id" required=""/>
+						<g:text id="form.categoria.nome" property="form.categoria.nome" required=""
+							readonly="readonly"/>
+						<g:shortcut module="#" screen="Categoria" action="Search"
+							    data-get='form.categoria.id, form.categoria.nome'
+							    tabindex='1' title='Selecionar Caregoria'>
+							<g:icon type="search"/>
+						</g:shortcut>
 					</span>
 				</label>
 				<label data-size='8'>
@@ -138,7 +142,7 @@
 					</span>
 				</label>
 			</fieldset>
-			<fieldset style='width: 100%'>
+			<fieldset>
 				<legend>
 					Que prazos este SLA deve aplicar aos chamados?
 				</legend>
@@ -170,13 +174,14 @@
 				</label>
 			</fieldset>
 		</fieldset>
-		<div class='Coolbar'>
+		<g-coolbar>
 			<g:link method='post' module="#" screen="#" action="#" tabindex='2' style='color: #006600'>
 				Concluir<g:icon type='commit'/>
 			</g:link>
+			<hr/>
 			<g:link module="#" screen="#" tabindex='2' style='float: left; color: #660000'>
 				Desistir<g:icon type='cancel'/>
 			</g:link>
-		</div>
+		</g-coolbar>
 	</form>
 </g:template>

@@ -4,31 +4,12 @@
 	<form method='POST' action='Gate?MODULE=cliq.admin.screen&SCREEN=CATEGORIA&ACTION=Search'>
 		<g:if condition="${not empty screen.page}">
 			<table>
-				<col style='width: 90%;'/>
-				<col style='width: 10%;'/>
-				<thead>
-					<tr>
-						<th style='text-align: center;'>
-							#
-						</th>
-						<th>
-							NOME
-						</th>
-					</tr>
-				</thead>
-
-				<tfoot></tfoot>
-
 				<tbody>
 					<g:iterator source="${screen.page}" target="categoria" index="index" children="${e -> e.children}" depth="depth">
-						<tr
-							data-value='form.id=${categoria.id}&form.nome=${categoria.nome}'>
-							<td style='text-align: center; padding: 5px;'>
-								<img  src='Gate?MODULE=cliq.modulos&SCREEN=Categoria&ACTION=Icon&form.id=${categoria.id}'
-								      style='width: 24px; height: 24px;'/>
-							</td>
-							<td style='padding-left: ${depth*40}px;'>
-								${categoria.nome}
+						<tr data-ret='"${categoria.id}", "${categoria.nome}"'>
+							<td style='padding-left: ${20 + (depth*60)}px;'>
+								<img src='Gate?MODULE=cliq.modulos&SCREEN=Categoria&ACTION=Icon&form.id=${categoria.id}' style='width: 24px; height: 24px;'/>
+								<g:print value="${categoria.nome}"/>
 							</td>
 						</tr>
 					</g:iterator>
