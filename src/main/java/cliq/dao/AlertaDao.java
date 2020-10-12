@@ -51,11 +51,12 @@ public class AlertaDao extends Dao
 
 	public CompiledCondition getCondition(User user)
 	{
-		return Condition.of(Condition.of("Solicitante$id").eq(ID.class, user.getId())
+		return Condition.of(Condition
+			.of("Solicitante$id").eq(ID.class, user.getId())
 			.or("Atendente$id").eq(ID.class, user.getId())
-			.or(Condition.of("Atendente$id").isNull().and("Localizacao$id").eq(ID.class, user.getRole().getId())
-				.or().exists(Select.expression("Compartilhamento.id").from("Compartilhamento").where(Condition.of("Compartilhamento.Chamado$id").eq("Chamado.id").and("Compartilhamento.Pessoa$id").eq(ID.class, user.getId())))
-				.or().exists(Select.expression("Compartilhamento.id").from("Compartilhamento").where(Condition.of("Compartilhamento.Chamado$id").eq("Chamado.id").and("Compartilhamento.Equipe$id").eq(ID.class, user.getRole().getId())))))
+			.or(Condition.of("Atendente$id").isNull().and("Localizacao$id").eq(ID.class, user.getRole().getId()))
+			.or().exists(Select.expression("Compartilhamento.id").from("Compartilhamento").where(Condition.of("Compartilhamento.Chamado$id").eq("Chamado.id").and("Compartilhamento.Pessoa$id").eq(ID.class, user.getId())))
+			.or().exists(Select.expression("Compartilhamento.id").from("Compartilhamento").where(Condition.of("Compartilhamento.Chamado$id").eq("Chamado.id").and("Compartilhamento.Equipe$id").eq(ID.class, user.getRole().getId()))))
 			.and().not("notificados").lk(user.getId().toString());
 	}
 }

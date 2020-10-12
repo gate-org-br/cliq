@@ -142,7 +142,7 @@ public class CategoriaScreen extends CLIQScreen
 	{
 		if (isPOST() && getMessages().isEmpty())
 		{
-			try (CSVParser parser = new CSVParser(new ByteArrayInputStream(form.getAnexo().getArquivo().getData())))
+			try (CSVParser parser = CSVParser.of(new ByteArrayInputStream(form.getAnexo().getArquivo().getData())))
 			{
 				var categorias = CheckedStream.of(AppException.class,
 					parser.stream())
