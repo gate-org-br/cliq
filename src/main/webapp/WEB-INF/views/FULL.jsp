@@ -50,8 +50,14 @@
 
 		<g:if condition="${not empty screen.user.id}">
 			<footer>
-				<label>${screen.user.role.name}</label>
-				<label>${screen.user.name}</label>
+				<label>
+					<g:link module="cliq.modulos" screen="Equipe" action="Choose">
+						${equipe.name}	
+					</g:link>
+				</label>
+				<label>
+					${screen.user.name}	
+				</label>
 			</footer>
 		</g:if>
 	</main>
