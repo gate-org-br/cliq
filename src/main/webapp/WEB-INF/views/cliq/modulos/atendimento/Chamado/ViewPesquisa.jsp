@@ -275,7 +275,7 @@
 										</tr>
 									</tfoot>
 
-									<tbody>
+									<tbody data-navigate>
 										<g:iterator source="${screen.page}" target="chamado" index="index">
 											<tr tabindex='1'
 											    title='Chamado'
