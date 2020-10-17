@@ -51,7 +51,7 @@
 		<g:if condition="${not empty screen.user.id}">
 			<footer>
 				<label>
-					<g:link module="cliq.modulos" screen="Equipe" action="Choose">
+					<g:link module="cliq.modulos" screen="Equipe" action="Choose" otherwise="${equipe.name}">
 						${equipe.name}	
 					</g:link>
 				</label>
