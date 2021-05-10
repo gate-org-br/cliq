@@ -1046,7 +1046,6 @@ public class AtendimentoControl extends ChamadoControl
 	public void solicitarComplementacao(Chamado chamado, String observacoes, Anexo anexo) throws AppException
 	{
 		try (Link link = new Link();
-			UserDao userDao = new UserDao(link);
 			AnexoDao anexoDao = new AnexoDao(link);
 			EventoDao eventoDao = new EventoDao(link);
 			AtendimentoDao atendimentoDao = new AtendimentoDao(link))

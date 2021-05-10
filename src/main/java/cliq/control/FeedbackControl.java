@@ -40,7 +40,7 @@ public class FeedbackControl extends Control
 						.setUser(feedback.getUser())
 						.setTipo(Evento.Tipo.CONCLUSAO)
 						.setDescricao("Chamado concluído por " + feedback.getUser().getName())));
-			};
+			}
 
 			link.commit();
 		} catch (ConstraintViolationException | RuntimeException ex)

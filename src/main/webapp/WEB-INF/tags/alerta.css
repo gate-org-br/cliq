@@ -1,4 +1,5 @@
 cliq-alerta { display: flex; align-items: stretch; justify-content: center; width: 80px; color: #660000; height: 100%; }
-cliq-alerta[value="0"] { color: #006600 }
-cliq-alerta::before { content: "\1007"; font-family: "gate"; font-size: 16px; flex-grow: 1; display: flex; align-items: center; justify-content: center; }
-cliq-alerta::after { content: attr(value); font-size: 16px; flex-grow: 1; display: flex; align-items: center; justify-content: center; }
+cliq-alerta::before { content: 'Alertas: ' attr(value); flex-grow: 1; display: flex; align-items: center; justify-content: center; }
+
+cliq-alerta[value="0"] { color: #000000 }
+cliq-alerta[value="0"]::before { content: 'Nenhum alerta';  }

@@ -342,6 +342,7 @@ public abstract class ChamadoControl extends Control
 				&& !chamado.getSolicitante().equals(getUser()))
 				chamadoDao
 					.update(chamado
+						.setFeedback(LocalDateTime.now())
 						.setPendencia(Pendencia.FEEDBACK)
 						.setNotificados(new StringSet(getUser().getId().toString()))
 						.setAtendente(user != null && user.getId() != null ? pessoaDao.select(user.getId()) : getUser())
@@ -351,8 +352,8 @@ public abstract class ChamadoControl extends Control
 								.setChamado(chamado)
 								.setStatus(conclusao)
 								.setObservacoes(observacoes)
-								.setData(LocalDateTime.now())
 								.setTipo(Evento.Tipo.FEEDBACK)
+								.setData(chamado.getFeedback())
 								.setAnexo(anexoDao.insert(anexo))
 								.setDescricao("Chamado enviado para feedback do solicitante por " + getUser().getName()))));
 			else

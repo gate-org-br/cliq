@@ -7,7 +7,7 @@ import gate.report.Doc;
 
 @Icon("search")
 @Name("Pesquisar")
-public class PesquisaScreen extends SolicitanteScreen
+public class PesquisaScreen extends Screen
 {
 
 	@Override

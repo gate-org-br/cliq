@@ -11,7 +11,7 @@ import java.util.List;
 
 @Icon("search")
 @Name("Pesquisar")
-public class PesquisaScreen extends AtendimentoScreen
+public class PesquisaScreen extends Screen
 {
 
 	private Object page;

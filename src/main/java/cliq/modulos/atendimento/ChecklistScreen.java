@@ -8,7 +8,7 @@ import gate.annotation.Name;
 import gate.error.AppException;
 import javax.inject.Inject;
 
-public class ChecklistScreen extends AtendimentoScreen
+public class ChecklistScreen extends Screen
 {
 
 	private Checklist.Checkitem checkitem;

@@ -22,7 +22,7 @@ import javax.inject.Inject;
 
 @Icon("2155")
 @Name("Atendimentos")
-public class AtendimentoScreen extends CLIQScreen
+public class Screen extends CLIQScreen
 {
 
 	protected Chamado form;

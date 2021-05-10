@@ -3,18 +3,16 @@
 
 <g:template filename="/WEB-INF/views/FULL.jsp">
 	<cliq:pendencias/>
-	
+
 	<cliq:estatisticas/>
 
-	<div class='LinkControl'>
-		<ul>
-			<g:menuitem module='#' screen='Pessoais' data-selected="${SCREEN eq 'Pessoais'}"/>
-			<g:menuitem module='#' screen='DaEquipe' data-selected="${SCREEN eq 'DaEquipe'}"/>
-			<g:menuitem module='#' screen='Chamados' data-selected="${SCREEN eq 'Chamados'}"/>
-			<g:menuitem module='#' screen='Pesquisa' data-selected="${SCREEN eq 'Pesquisa'}"/>
-			<g:menuitem module='#' screen='Evento' data-selected="${SCREEN eq 'Evento'}"/>
-			<g:menuitem module='#' screen='Contato' data-selected="${SCREEN eq 'Contato'}"/>
-		</ul>
+	<g-tab-control type="dummy">
+		<g:link module='#' screen='Pessoais' data-selected="${SCREEN eq 'Pessoais'}"/>
+		<g:link module='#' screen='DaEquipe' data-selected="${SCREEN eq 'DaEquipe'}"/>
+		<g:link module='#' screen='Chamados' data-selected="${SCREEN eq 'Chamados'}"/>
+		<g:link module='#' screen='Pesquisa' data-selected="${SCREEN eq 'Pesquisa'}"/>
+		<g:link module='#' screen='Evento' data-selected="${SCREEN eq 'Evento'}"/>
+		<g:link module='#' screen='Contato' data-selected="${SCREEN eq 'Contato'}"/>
 		<div>
 			<g:insert/>
 		</div>

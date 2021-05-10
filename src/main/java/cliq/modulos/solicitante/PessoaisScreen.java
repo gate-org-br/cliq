@@ -11,7 +11,7 @@ import gate.report.Doc;
 
 @Name("Pessoais")
 @CopyIcon(User.class)
-public class PessoaisScreen extends SolicitanteScreen
+public class PessoaisScreen extends Screen
 {
 
 	@Override

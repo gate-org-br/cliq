@@ -11,7 +11,7 @@ import java.util.List;
 
 @Name("Equipe")
 @Icon("gate.entity.Role")
-public class DaEquipeScreen extends AtendimentoScreen
+public class DaEquipeScreen extends Screen
 {
 
 	private List<Chamado> chamados;

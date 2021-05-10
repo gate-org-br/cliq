@@ -6,7 +6,7 @@ import gate.annotation.Name;
 
 @Icon("2020")
 @Name("Gerência")
-public class AdminScreen extends CLIQScreen
+public class Screen extends CLIQScreen
 {
 
 	@Override

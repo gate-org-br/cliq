@@ -20,7 +20,7 @@ import javax.inject.Inject;
 
 @Icon("2223")
 @Name("Solicitações")
-public class SolicitanteScreen extends CLIQScreen
+public class Screen extends CLIQScreen
 {
 
 	protected Object page;

@@ -1,7 +1,9 @@
 cliq-alerta { display: flex; align-items: stretch; justify-content: center; width: 80px; color: #660000; height: 100%; }
-cliq-alerta[value="0"] { color: #006600 }
-cliq-alerta::before { content: "\1007"; font-family: "gate"; font-size: 16px; flex-grow: 1; display: flex; align-items: center; justify-content: center; }
-cliq-alerta::after { content: attr(value); font-size: 16px; flex-grow: 1; display: flex; align-items: center; justify-content: center; }
+cliq-alerta::before { content: 'Alertas: ' attr(value); flex-grow: 1; display: flex; align-items: center; justify-content: center; }
+
+cliq-alerta[value="0"] { color: #000000 }
+cliq-alerta[value="0"]::before { content: 'Nenhum alerta';  }
+
 table.Atendimentos > * > tr > *:nth-child(1) { text-align: center; width: 50px }
 table.Atendimentos > * > tr > *:nth-child(3) { text-align: center; width: 120px }
 table.Atendimentos > * > tr > *:nth-child(4) { text-align: center; width: 120px }
@@ -24,13 +26,6 @@ Table.Checklist { margin: 0 }
 Table.Checklist > * > tr > * > a > i { font-size: 16px }
 Table.Checklist > * > tr > *:nth-child(1) { text-align: center; width: 64px }
 Table.Checklist > * > tr > *:nth-child(3) { text-align: center; width: 64px }
-span.Editor { flex-basis: 400px }
-
-.ck.ck-editor__editable[role='textbox']
-{
-	padding: 8px;
-	line-height: 12px;
-}
 table.Estatisticas { border-radius: 5px }
 table.Estatisticas > thead > tr > th:first-child { border-top-left-radius: 5px }
 table.Estatisticas > thead > tr > th:last-child { border-top-right-radius: 5px }

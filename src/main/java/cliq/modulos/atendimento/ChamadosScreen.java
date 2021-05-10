@@ -11,7 +11,7 @@ import java.util.List;
 
 @Icon("2006")
 @Name("Todos")
-public class ChamadosScreen extends AtendimentoScreen
+public class ChamadosScreen extends Screen
 {
 
 	private List<Chamado> chamados;
