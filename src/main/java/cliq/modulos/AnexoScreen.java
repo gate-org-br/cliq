@@ -8,6 +8,8 @@ import gate.annotation.Name;
 import gate.error.NotFoundException;
 import javax.inject.Inject;
 
+@Name("Anexo")
+@Icon("attach")
 public class AnexoScreen extends CLIQScreen
 {
 
@@ -16,6 +18,7 @@ public class AnexoScreen extends CLIQScreen
 	@Inject
 	private AnexoControl control;
 
+	@Override
 	@Name("Anexo")
 	@Icon("attach")
 	@Description("Fazer download do anexo")

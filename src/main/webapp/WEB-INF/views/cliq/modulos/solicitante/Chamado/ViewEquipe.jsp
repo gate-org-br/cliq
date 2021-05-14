@@ -19,12 +19,12 @@
 			<g:link module="#" screen="#" action="#" arguments="form.situacao=CONCLUIDO" 
 				data-selected='${screen.form.situacao eq "CONCLUIDO"}' 
 				style="color: ${g:color('cliq.type.Situacao:CONCLUIDO')}">
-				Concluídas<g:icon type="cliq.type.Situacao:CONCLUIDO"/>
+				Concluídos<g:icon type="cliq.type.Situacao:CONCLUIDO"/>
 			</g:link>
 			<g:link module="#" screen="#" action="#" arguments="form.situacao=CANCELADO" 
 				data-selected='${screen.form.situacao eq "CANCELADO"}' 
 				style="color: ${g:color('cliq.type.Situacao:CANCELADO')}">
-				Canceladas<g:icon type="cliq.type.Situacao:CANCELADO"/>
+				Cancelados<g:icon type="cliq.type.Situacao:CANCELADO"/>
 			</g:link>
 			<div>
 				<cliq:solicitacoes chamados="${screen.page}"/>

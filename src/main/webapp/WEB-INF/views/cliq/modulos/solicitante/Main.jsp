@@ -6,7 +6,7 @@
 
 	<div class='LinkControl'>
 		<ul>
-			<g:menuitem module="#" screen="Solicitante" action="Insert" data-selected="${ACTION eq 'Insert'}"/>
+			<g:menuitem module="#" action="Insert" data-selected="${ACTION eq 'Insert'}"/>
 			<g:menuitem module="#" screen="Pessoais" data-selected="${SCREEN eq 'Pessoais'}"/>
 			<g:menuitem module="#" screen="DaEquipe" data-selected="${SCREEN eq 'DaEquipe'}"/>
 			<g:menuitem module="#" screen="Pesquisa" data-selected="${SCREEN eq 'Pesquisa'}"/>

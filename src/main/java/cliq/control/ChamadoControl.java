@@ -1,5 +1,6 @@
 package cliq.control;
 
+import cliq.Validador;
 import cliq.dao.AnexoDao;
 import cliq.dao.CategoriaDao;
 import cliq.dao.ChamadoDao;
@@ -68,7 +69,7 @@ public abstract class ChamadoControl extends Control
 			for (Chamado chamado : chamados)
 			{
 				chamado.getFormulario().validate();
-				Constraints.validate(chamado, "categoria.id");
+				Constraints.validate(chamado, "categoria.id", "titulo", "descricao");
 
 				if (chamado.getOrigem().getId() != null && !getUser().getRole().contains(chamado.getOrigem()))
 					throw new AppException("Tentativa de criar chamado com origem inválida");
@@ -250,8 +251,10 @@ public abstract class ChamadoControl extends Control
 
 	public void update(ID id, String titulo, Form formulario, String descricao, Anexo anexo) throws AppException
 	{
-		if (titulo == null || titulo.isEmpty())
-			throw new AppException("O campo título é obrigatório");
+		Validador.validarDescricao(descricao);
+
+		if (titulo == null || titulo.isEmpty() || titulo.length() > 128)
+			throw new AppException("O campo título é obrigatório e deve conter no máximo 128 caracteres");
 
 		if (formulario != null)
 			formulario.validate();
@@ -280,6 +283,8 @@ public abstract class ChamadoControl extends Control
 
 	public void concluir(Chamado chamado, User user, String conclusao, String observacoes, Anexo anexo) throws AppException
 	{
+		Validador.validarDescricao(observacoes);
+
 		try (Link link = new Link();
 			AnexoDao anexoDao = new AnexoDao(link);
 			EventoDao eventoDao = new EventoDao(link);
@@ -382,6 +387,8 @@ public abstract class ChamadoControl extends Control
 
 	public void cancelar(Chamado chamado, String observacoes, Anexo anexo) throws AppException
 	{
+		Validador.validarDescricao(observacoes);
+
 		try (Link link = new Link();
 			AnexoDao anexoDao = new AnexoDao(link);
 			EventoDao eventoDao = new EventoDao(link);
@@ -431,6 +438,8 @@ public abstract class ChamadoControl extends Control
 
 	public void reabrir(Chamado chamado, String observacoes, Anexo anexo) throws AppException
 	{
+		Validador.validarDescricao(observacoes);
+
 		try (Link link = new Link();
 			AnexoDao anexoDao = new AnexoDao(link);
 			EventoDao eventoDao = new EventoDao(link);
@@ -510,6 +519,8 @@ public abstract class ChamadoControl extends Control
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void comentarioSimples(Chamado chamado, String comentario, Anexo anexo) throws AppException
 	{
+		Validador.validarDescricao(comentario);
+
 		if (comentario == null && (anexo == null || anexo.getArquivo() == null))
 			throw new AppException("Entre com um comentário ou um arquivo");
 
@@ -573,6 +584,8 @@ public abstract class ChamadoControl extends Control
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void avaliar(Chamado chamado, Nota nota, String observacoes, Anexo anexo) throws AppException
 	{
+		Validador.validarDescricao(observacoes);
+
 		if (nota == null)
 			throw new AppException("A nota é obrigatória");
 
@@ -626,6 +639,8 @@ public abstract class ChamadoControl extends Control
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void aceitarHomologacao(Chamado chamado, String observacoes, Anexo anexo) throws AppException
 	{
+		Validador.validarDescricao(observacoes);
+
 		try (Link link = new Link();
 			AnexoDao anexoDao = new AnexoDao(link);
 			EventoDao eventoDao = new EventoDao(link);
@@ -699,6 +714,8 @@ public abstract class ChamadoControl extends Control
 
 	public void recusarHomologacao(Chamado chamado, String observacoes, Anexo anexo) throws AppException
 	{
+		Validador.validarDescricao(observacoes);
+
 		try (Link link = new Link();
 			AnexoDao anexoDao = new AnexoDao(link);
 			EventoDao eventoDao = new EventoDao(link);
@@ -739,6 +756,8 @@ public abstract class ChamadoControl extends Control
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void aceitarAprovacao(Chamado chamado, String observacoes, Anexo anexo) throws AppException
 	{
+		Validador.validarDescricao(observacoes);
+
 		try (Link link = new Link();
 			AnexoDao anexoDao = new AnexoDao(link);
 			EventoDao eventoDao = new EventoDao(link);
@@ -776,6 +795,8 @@ public abstract class ChamadoControl extends Control
 
 	public void recusarAprovacao(Chamado chamado, String observacoes, Anexo anexo) throws AppException
 	{
+		Validador.validarDescricao(observacoes);
+
 		try (Link link = new Link();
 			AnexoDao anexoDao = new AnexoDao(link);
 			EventoDao eventoDao = new EventoDao(link);
@@ -828,6 +849,8 @@ public abstract class ChamadoControl extends Control
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void aceitarFeedback(Chamado chamado, String observacoes, Anexo anexo) throws AppException
 	{
+		Validador.validarDescricao(observacoes);
+
 		try (Link link = new Link();
 			AnexoDao anexoDao = new AnexoDao(link);
 			EventoDao eventoDao = new EventoDao(link);
@@ -881,6 +904,8 @@ public abstract class ChamadoControl extends Control
 
 	public void recusarFeedback(Chamado chamado, String observacoes, Anexo anexo) throws AppException
 	{
+		Validador.validarDescricao(observacoes);
+
 		try (Link link = new Link();
 			AnexoDao anexoDao = new AnexoDao(link);
 			EventoDao eventoDao = new EventoDao(link);
@@ -924,6 +949,8 @@ public abstract class ChamadoControl extends Control
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void complementar(Chamado chamado, String observacoes, Anexo anexo) throws AppException
 	{
+		Validador.validarDescricao(observacoes);
+
 		if (observacoes == null
 			&& (anexo == null || anexo.getArquivo() == null))
 			throw new AppException("Entre com a informação solicitada para complementar o chamado");

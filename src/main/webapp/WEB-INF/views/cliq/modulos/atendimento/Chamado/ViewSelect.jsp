@@ -150,7 +150,7 @@
 								<g:choose>
 									<g:when condition="${screen.form.situacao eq 'PENDENTE' and screen.form.localizacao.id eq equipe.id}">
 										<g:secure module='cliq.modulos.admin' screen='Chamado' action='Atribuir' otherwise="${g:print(screen.form.atendente.name)}">
-											<g:select property="form.atendente.id" options="${equipe.users}" required='' values="${e -> e.id}"
+											<g:select property="form.atendente.id" options="${equipe.users}" required='' values="${e -> e.id}" empty="Equipe"
 												  data-method='post' data-action="Gate?MODULE=${MODULE}&SCREEN=${SCREEN}&ACTION=Atribuir"/>
 										</g:secure>
 									</g:when>

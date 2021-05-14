@@ -1,5 +1,6 @@
 package cliq.entity;
 
+import cliq.Validador;
 import gate.annotation.Color;
 import gate.annotation.Column;
 import gate.annotation.Converter;
@@ -7,6 +8,7 @@ import gate.annotation.Description;
 import gate.annotation.Entity;
 import gate.annotation.Icon;
 import gate.annotation.Name;
+import gate.constraint.Maxlength;
 import gate.constraint.Required;
 import gate.converter.EnumStringConverter;
 import gate.entity.Role;
@@ -62,6 +64,9 @@ public class Evento implements Serializable
 
 	private String descricao;
 
+	@Name("Observações")
+	@Maxlength(Validador.MAX_TEXT_SIZE)
+	@Description("O campo observações não pode exceder um megabyte")
 	private String observacoes;
 
 	private Anexo anexo;

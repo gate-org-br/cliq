@@ -612,7 +612,7 @@ public class AtendimentoControl extends ChamadoControl
 							.setData(LocalDateTime.now())
 							.setTipo(Evento.Tipo.ATRIBUICAO)
 							.setAnexo(anexoDao.insert(anexo))
-							.setDescricao("Chamado atribuído para " + (chamado.getAtendente().getId() != null ? chamado.getAtendente() : " ninguém")))));
+							.setDescricao("Chamado atribuído para " + (chamado.getAtendente().getId() != null ? chamado.getAtendente() : " a equipe")))));
 
 			link.commit();
 			event.fire(chamado);

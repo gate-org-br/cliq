@@ -6,7 +6,7 @@
 			<g:path/>
 		</legend>'
 		<ul class='DeskPane'>
-			<g:menuitem module='#' screen='Solicitante' action="Insert"/>
+			<g:menuitem module='#' action="Insert"/>
 			<g:menuitem module='#' screen='Pessoais'/>
 			<g:menuitem module='#' screen='DaEquipe'/>
 			<g:menuitem module='#' screen='Pesquisa'/>

@@ -37,7 +37,7 @@
 						<g:label property='form.visibilidade'/>
 						<a target="_popup" href="#">
 							<g:icon type="2000"/>
-							<div title='Exceções'>
+							<template title='Exceções'>
 								<fieldset>
 									<g:selectn property="form.roles[]"
 										   disabled="disabled"
@@ -45,7 +45,7 @@
 										   children="${e -> e.children}"
 										   labels="${e -> e.name}"/>
 								</fieldset>
-							</div>
+							</template>
 						</a>
 					</span>
 				</label>

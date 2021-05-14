@@ -1,5 +1,6 @@
 package cliq.entity;
 
+import cliq.Validador;
 import cliq.type.Atendimento;
 import cliq.type.Checklist;
 import cliq.type.Complexidade;
@@ -84,7 +85,8 @@ public class Chamado implements Serializable, Comparable<Chamado>
 	private String titulo;
 
 	@Name("Descrição")
-	@Description("Descrição do chamado")
+	@Maxlength(Validador.MAX_TEXT_SIZE)
+	@Description("A descrição do chamado não pode exceder um megabyte")
 	private String descricao;
 
 	@Required

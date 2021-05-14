@@ -15,7 +15,7 @@
 				<g:link module="cliq.modulos.atendimento"/>
 				<g:link module="cliq.modulos.admin" />
 				<g:link target="_dialog" module="cliq.modulos.atendimento" 
-					screen="Atendimento" action="Localizar" arguments="form.id=?{Número do chamado}"/>
+					action="Localizar" arguments="form.id=?{Número do chamado}"/>
 				<g:link module="cliq.modulos" screen="Alerta" action="Select">
 					<g:icon type="1007"/>
 					<cliq-alerta></cliq-alerta>
