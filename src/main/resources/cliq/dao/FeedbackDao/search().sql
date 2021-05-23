@@ -1,4 +1,4 @@
-SELECT
+SELECT 
     Chamado.id AS id,
     Evento.id AS 'evento.id',
     Evento.data AS 'evento.data',
@@ -9,6 +9,7 @@ FROM
         JOIN
     Evento ON Chamado.id = Evento.Chamado$id
         AND Evento.tipo = 'FEEDBACK'
+        and Evento.data  = Chamado.feedback
         JOIN
     gate.Uzer ON Evento.Uzer$id = Uzer.id
 WHERE

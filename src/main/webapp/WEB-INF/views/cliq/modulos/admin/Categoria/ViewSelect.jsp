@@ -3,7 +3,6 @@
 
 <g:template filename="/WEB-INF/views/FULL.jsp">
 	<g-tab-control>
-
 		<a href="#" data-selected='${param.tab eq 'Categoria'}'>
 			<g:name type="${action}"/>
 			<g:icon type="${action}"/>
@@ -37,7 +36,7 @@
 						<g:label property='form.visibilidade'/>
 						<a target="_popup" href="#">
 							<g:icon type="2000"/>
-							<template title='Exceções'>
+							<div title='Exceções'>
 								<fieldset>
 									<g:selectn property="form.roles[]"
 										   disabled="disabled"
@@ -45,7 +44,7 @@
 										   children="${e -> e.children}"
 										   labels="${e -> e.name}"/>
 								</fieldset>
-							</template>
+							</div>
 						</a>
 					</span>
 				</label>

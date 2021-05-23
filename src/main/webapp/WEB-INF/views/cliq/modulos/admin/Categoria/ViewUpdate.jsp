@@ -18,14 +18,14 @@
 					<g:select property='form.visibilidade' tabindex='1'/>
 					<a target="_popup" href="#">
 						<g:icon type="2000"/>
-						<template title='Exceções'>
+						<div title='Exceções'>
 							<fieldset>
 								<g:selectn property="form.roles[]"
 									   options="${screen.user.role.getRoot()}"
 									   children="${e -> e.children}"
 									   labels="${e -> e.name}"/>
 							</fieldset>
-						</template>
+						</div>
 					</a>
 				</span>
 			</label>

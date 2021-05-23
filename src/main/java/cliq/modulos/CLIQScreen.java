@@ -19,7 +19,7 @@ public class CLIQScreen extends Screen
 			return new URL(String.format("Gate?MODULE=cliq.modulos.atendimento&SCREEN=DaEquipe&page.id=%d",
 				getUser().getRole().getId().getValue()));
 
-		return new URL("Gate?MODULE=cliq.modulos.solicitante&SCREEN=Solicitante&ACTION=Insert");
+		return new URL("Gate?MODULE=cliq.modulos.solicitante&ACTION=Insert");
 	}
 
 	public List<User> getUsers()

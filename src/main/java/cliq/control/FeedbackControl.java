@@ -36,7 +36,7 @@ public class FeedbackControl extends Control
 					Situacao.CONCLUIDO,
 					eventoDao.insert(new Evento()
 						.setChamado(chamado)
-						.setData(chamado.getSolucao())
+						.setData(feedback.getData())
 						.setUser(feedback.getUser())
 						.setTipo(Evento.Tipo.CONCLUSAO)
 						.setDescricao("Chamado concluído por " + feedback.getUser().getName())));

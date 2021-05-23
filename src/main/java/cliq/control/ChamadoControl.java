@@ -69,7 +69,7 @@ public abstract class ChamadoControl extends Control
 			for (Chamado chamado : chamados)
 			{
 				chamado.getFormulario().validate();
-				Constraints.validate(chamado, "categoria.id", "titulo", "descricao");
+				Constraints.validate(chamado, "categoria.id", "descricao");
 
 				if (chamado.getOrigem().getId() != null && !getUser().getRole().contains(chamado.getOrigem()))
 					throw new AppException("Tentativa de criar chamado com origem inválida");
@@ -688,7 +688,7 @@ public abstract class ChamadoControl extends Control
 								.setChamado(chamado)
 								.setTipo(Evento.Tipo.FEEDBACK)
 								.setUser(solicitacaoHomologacao.getUser())
-								.setData(chamado.getEvento().getData().plusSeconds(1))
+								.setData(chamado.getFeedback())
 								.setDescricao("Chamado enviado para feedback do solicitante por " + solicitacaoHomologacao.getUser().getName()))));
 			else
 				chamadoDao
